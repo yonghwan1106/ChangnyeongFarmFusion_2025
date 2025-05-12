@@ -4,7 +4,7 @@
   <rect width="400" height="200" fill="#C4B5FD" />
   
   <!-- 상승 그래프와 양파 콤비네이션 -->
-  <g transform="translate(200, 100)">
+  <g transform="translate(200, 80)">
     <!-- 그래프 배경 -->
     <rect x="-60" y="-40" width="120" height="80" rx="5" fill="white" stroke="#7e3af2" stroke-width="1" />
     

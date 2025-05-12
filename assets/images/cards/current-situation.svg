@@ -4,7 +4,7 @@
   <rect width="400" height="200" fill="#E9D5FF" />
   
   <!-- 그래프 아이콘 -->
-  <g transform="translate(200, 100) scale(2.5)">
+  <g transform="translate(200, 80) scale(2.5)">
     <!-- 차트 배경 -->
     <rect x="-40" y="-25" width="80" height="50" rx="5" fill="white" stroke="#7e3af2" stroke-width="2" />
     

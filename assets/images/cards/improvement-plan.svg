@@ -4,7 +4,7 @@
   <rect width="400" height="200" fill="#DDD6FE" />
   
   <!-- 기어/솔루션 아이콘 -->
-  <g transform="translate(200, 100)">
+  <g transform="translate(200, 80)">
     <!-- 큰 기어 -->
     <circle cx="0" cy="0" r="45" fill="white" stroke="#7e3af2" stroke-width="2" />
     <circle cx="0" cy="0" r="35" fill="#f3f4f6" stroke="#7e3af2" stroke-width="1" />

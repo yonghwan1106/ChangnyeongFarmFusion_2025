@@ -4,7 +4,7 @@
   <rect width="400" height="200" fill="#A78BFA" />
   
   <!-- 데이터 분석 시각화 -->
-  <g transform="translate(200, 100)">
+  <g transform="translate(200, 80)">
     <!-- 차트 배경 -->
     <rect x="-70" y="-40" width="140" height="80" rx="5" fill="white" stroke="#7e3af2" stroke-width="1" />
     
