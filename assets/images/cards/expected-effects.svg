@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="200" xmlns="http://www.w3.org/2000/svg">
+  <!-- 배경 -->
+  <rect width="400" height="200" fill="#C4B5FD" />
+  
+  <!-- 상승 그래프와 양파 콤비네이션 -->
+  <g transform="translate(200, 100)">
+    <!-- 그래프 배경 -->
+    <rect x="-60" y="-40" width="120" height="80" rx="5" fill="white" stroke="#7e3af2" stroke-width="1" />
+    
+    <!-- 그리드 라인 -->
+    <line x1="-60" y1="-20" x2="60" y2="-20" stroke="#e5e7eb" stroke-width="1" />
+    <line x1="-60" y1="0" x2="60" y2="0" stroke="#e5e7eb" stroke-width="1" />
+    <line x1="-60" y1="20" x2="60" y2="20" stroke="#e5e7eb" stroke-width="1" />
+    <line x1="-40" y1="-40" x2="-40" y2="40" stroke="#e5e7eb" stroke-width="1" />
+    <line x1="-20" y1="-40" x2="-20" y2="40" stroke="#e5e7eb" stroke-width="1" />
+    <line x1="0" y1="-40" x2="0" y2="40" stroke="#e5e7eb" stroke-width="1" />
+    <line x1="20" y1="-40" x2="20" y2="40" stroke="#e5e7eb" stroke-width="1" />
+    <line x1="40" y1="-40" x2="40" y2="40" stroke="#e5e7eb" stroke-width="1" />
+    
+    <!-- 상승 그래프 -->
+    <path d="M-50,20 L-30,10 L-10,15 L10,0 L30,-20 L50,-30" 
+          stroke="#10B981" stroke-width="3" fill="none" 
+          stroke-linecap="round" stroke-linejoin="round" />
+          
+    <!-- 그래프 포인트 -->
+    <circle cx="-50" cy="20" r="4" fill="#10B981" />
+    <circle cx="-30" cy="10" r="4" fill="#10B981" />
+    <circle cx="-10" cy="15" r="4" fill="#10B981" />
+    <circle cx="10" cy="0" r="4" fill="#10B981" />
+    <circle cx="30" cy="-20" r="4" fill="#10B981" />
+    <circle cx="50" cy="-30" r="4" fill="#10B981" />
+    
+    <!-- 양파 아이콘 -->
+    <g transform="translate(30, -20) scale(0.8)">
+      <circle cx="0" cy="0" r="15" fill="#8B5CF6" />
+      <path d="M-5,-15 L0,-25 L5,-15" fill="#6D28D9" stroke="#6D28D9" stroke-width="2" stroke-linejoin="round" />
+    </g>
+    
+    <!-- 화살표 아이콘 -->
+    <g transform="translate(-40, 0) scale(0.7)">
+      <circle cx="0" cy="0" r="15" fill="#F59E0B" opacity="0.8" />
+      <path d="M-5,5 L0,-5 L5,5" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+  </g>
+  
+  <!-- 타이틀 -->
+  <rect x="0" y="150" width="400" height="50" fill="#7e3af2" opacity="0.85" />
+  <text x="200" y="180" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="white">기대효과</text>
+</svg>

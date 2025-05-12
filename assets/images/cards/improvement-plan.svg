@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="200" xmlns="http://www.w3.org/2000/svg">
+  <!-- 배경 -->
+  <rect width="400" height="200" fill="#DDD6FE" />
+  
+  <!-- 기어/솔루션 아이콘 -->
+  <g transform="translate(200, 100)">
+    <!-- 큰 기어 -->
+    <circle cx="0" cy="0" r="45" fill="white" stroke="#7e3af2" stroke-width="2" />
+    <circle cx="0" cy="0" r="35" fill="#f3f4f6" stroke="#7e3af2" stroke-width="1" />
+    
+    <!-- 기어 톱니 -->
+    <g>
+      <rect x="-5" y="-55" width="10" height="20" fill="#7e3af2" rx="2" />
+      <rect x="-5" y="35" width="10" height="20" fill="#7e3af2" rx="2" />
+      <rect x="35" y="-5" width="20" height="10" fill="#7e3af2" rx="2" />
+      <rect x="-55" y="-5" width="20" height="10" fill="#7e3af2" rx="2" />
+      
+      <!-- 대각선 방향 톱니 -->
+      <rect x="25" y="-45" width="10" height="20" fill="#7e3af2" rx="2" transform="rotate(45)" />
+      <rect x="25" y="25" width="10" height="20" fill="#7e3af2" rx="2" transform="rotate(45)" />
+      <rect x="-45" y="-45" width="10" height="20" fill="#7e3af2" rx="2" transform="rotate(-45)" />
+      <rect x="-45" y="25" width="10" height="20" fill="#7e3af2" rx="2" transform="rotate(-45)" />
+    </g>
+    
+    <!-- 중앙 작은 기어 -->
+    <circle cx="0" cy="0" r="15" fill="white" stroke="#7e3af2" stroke-width="3" />
+    <circle cx="0" cy="0" r="7" fill="#7e3af2" />
+    
+    <!-- 체크 표시 -->
+    <g transform="translate(-7, -5) scale(0.8)">
+      <path d="M5,15 L10,20 L20,5" stroke="#10B981" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+  </g>
+  
+  <!-- 타이틀 -->
+  <rect x="0" y="150" width="400" height="50" fill="#7e3af2" opacity="0.85" />
+  <text x="200" y="180" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="white">개선방안</text>
+</svg>
