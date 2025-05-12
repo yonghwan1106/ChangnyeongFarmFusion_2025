@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200">
+  <!-- 배경 -->
+  <rect x="0" y="0" width="300" height="200" fill="#f9f9f9" fill-opacity="0" />
+  
+  <!-- 양파 본체 (왼쪽에 배치) -->
+  <ellipse cx="90" cy="100" rx="50" ry="60" fill="#9c59b6" />
+  
+  <!-- 양파 내부 레이어 -->
+  <ellipse cx="90" cy="100" rx="38" ry="48" fill="#b980d0" />
+  <ellipse cx="90" cy="100" rx="26" ry="36" fill="#d4a6e3" />
+  
+  <!-- 양파 줄기 부분 -->
+  <path d="M90,40 C97,48 105,40 105,30 L108,20 C108,20 92,15 90,15 C88,15 72,20 72,20 L75,30 C75,40 83,48 90,40" fill="#7d8e44" />
+  
+  <!-- 잎 부분 -->
+  <path d="M70,45 C60,35 50,40 45,30 C55,25 65,35 70,45" fill="#87aa45" />
+  <path d="M110,45 C120,35 130,40 135,30 C125,25 115,35 110,45" fill="#87aa45" />
+  
+  <!-- 텍스트 부분 (오른쪽에 배치) -->
+  <!-- Changnyeong -->
+  <text x="160" y="80" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#5d4037">Changnyeong</text>
+  
+  <!-- Onion Valley -->
+  <text x="160" y="115" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#8e44ad">Onion Valley</text>
+  
+  <!-- 한국 양파 시배지 텍스트 -->
+  <text x="160" y="140" font-family="Arial, sans-serif" font-size="12" font-style="italic" fill="#7d8e44">Since 1909 - Korea's First Onion Farm</text>
+  
+  <!-- 지리적 표시 마크 -->
+  <circle cx="250" cy="50" r="15" fill="#e74c3c" />
+  <text x="250" y="55" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#ffffff" font-weight="bold">GI</text>
+</svg>

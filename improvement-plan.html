@@ -1,0 +1,1960 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>개선방안 - 창녕 농촌융복합산업(6차산업) 활성화 프로젝트</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+    <style>
+        /* 커스텀 애니메이션 효과 */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* 서서히 나타나는 배경 효과 */
+        .bg-gradient-pattern {
+            background-image: linear-gradient(to right, rgba(233, 213, 255, 0.1), rgba(243, 232, 255, 0.2));
+            background-size: 100% 100%;
+        }
+        /* 추가 호버 효과 */
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(124, 58, 237, 0.1), 0 10px 10px -5px rgba(124, 58, 237, 0.04);
+        }
+        /* 커스텀 타임라인 */
+        .timeline {
+            position: relative;
+            margin: 20px auto;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: rgba(124, 58, 237, 0.3);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid #7c3aed;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .timeline-left {
+            left: 0;
+        }
+        .timeline-right {
+            left: 50%;
+        }
+        .timeline-left::after {
+            right: -10px;
+        }
+        .timeline-right::after {
+            left: -10px;
+        }
+        /* 숫자 강조 효과 */
+        .number-highlight {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #7c3aed, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+        /* 그래프 빛나는 효과 */
+        .graph-container {
+            position: relative;
+        }
+        .graph-container::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(45deg, #7c3aed22, #a78bfa22);
+            border-radius: 12px;
+            z-index: -1;
+            animation: pulse 3s infinite;
+        }
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.2);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(124, 58, 237, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(124, 58, 237, 0);
+            }
+        }
+        /* 헤더 애니메이션 */
+        .animate-header {
+            animation: fadeInDown 1s ease-out;
+        }
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* 파티클 배경 효과 */
+        .particles-bg {
+            position: relative;
+            overflow: hidden;
+        }
+        .particles-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(circle, #7c3aed10 1px, transparent 1px);
+            background-size: 20px 20px;
+            z-index: -1;
+        }
+        /* 불릿 스타일 개선 */
+        .custom-bullet-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .custom-bullet-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 0.5rem;
+            height: 0.5rem;
+            background-color: #7c3aed;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- 스크롤 프로그레스 바 -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+    <!-- 헤더 -->
+    <header class="bg-purple-800 text-white shadow-md sticky top-0 z-50 animate-header">
+        <div class="container mx-auto p-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="changnyeong_onion_icon.svg" alt="창녕 양파 로고" class="h-10 mr-3">
+                <h1 class="text-xl md:text-2xl font-bold">창녕 양파밸리</h1>
+            </div>
+            <nav class="hidden md:flex space-x-6">
+                <a href="index.html" class="hover:text-purple-200 transition duration-300">홈</a>
+                <a href="current-situation.html" class="hover:text-purple-200 transition duration-300">현황 및 문제점</a>
+                <a href="improvement-plan.html" class="hover:text-purple-200 font-medium border-b-2 border-purple-300 transition duration-300">개선방안</a>
+                <a href="expected-effects.html" class="hover:text-purple-200 transition duration-300">기대효과</a>
+                <a href="changnyeong-trend-visualization.html" class="hover:text-purple-200 transition duration-300">트렌드 분석</a>
+            </nav>
+            <button class="md:hidden focus:outline-none" id="menu-toggle">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- 모바일 메뉴 -->
+        <div class="md:hidden hidden bg-purple-700 pb-3 pt-1" id="mobile-menu">
+            <nav class="container mx-auto px-4 flex flex-col space-y-2">
+                <a href="index.html" class="hover:text-purple-200 py-2 transition duration-300">홈</a>
+                <a href="current-situation.html" class="hover:text-purple-200 py-2 transition duration-300">현황 및 문제점</a>
+                <a href="improvement-plan.html" class="hover:text-purple-200 py-2 font-medium border-l-4 border-purple-300 pl-2 transition duration-300">개선방안</a>
+                <a href="expected-effects.html" class="hover:text-purple-200 py-2 transition duration-300">기대효과</a>
+                <a href="changnyeong-trend-visualization.html" class="hover:text-purple-200 py-2 transition duration-300">트렌드 분석</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 페이지 헤더 -->
+    <div class="bg-purple-700 text-white py-16 relative overflow-hidden particles-bg">
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="animate__animated animate__fadeInUp">
+                <h1 class="text-3xl md:text-5xl font-bold mb-4">개선방안</h1>
+                <p class="text-lg md:text-xl max-w-3xl">창녕 양파 중심의 농촌융복합산업(6차산업) 활성화를 위한 구체적인 전략과 사업계획입니다.</p>
+                <div class="mt-6 inline-block bg-purple-600 rounded-full px-6 py-2 shadow-lg">
+                    <i class="fas fa-lightbulb mr-2"></i> 창의적 전략으로 새로운 가치 창출
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 브레드크럼 -->
+    <div class="bg-gray-100 py-2 shadow-sm">
+        <div class="container mx-auto px-4">
+            <nav class="text-sm flex items-center">
+                <a href="index.html" class="text-purple-600 hover:text-purple-800 flex items-center">
+                    <i class="fas fa-home mr-1"></i> 홈
+                </a>
+                <span class="mx-2 text-gray-500">/</span>
+                <span class="text-gray-700 font-medium">개선방안</span>
+            </nav>
+        </div>
+    </div>
+
+    <!-- 메인 콘텐츠 -->
+    <main class="container mx-auto px-4 py-12">
+        <!-- 섹션 1: 비전 및 목표 -->
+        <section class="mb-20 fade-in-section">
+            <div class="flex items-center mb-6">
+                <div class="bg-purple-600 h-10 w-10 rounded-full flex items-center justify-center text-white mr-4 shadow-lg">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800">1. 비전 및 목표</h2>
+            </div>
+            
+            <!-- 비전 -->
+            <div class="bg-white rounded-lg shadow-lg p-8 mb-12 hover-lift transition-all duration-300 bg-gradient-pattern">
+                <h3 class="text-xl font-bold mb-6 text-purple-800 flex items-center">
+                    <i class="fas fa-bullseye mr-2 text-purple-600"></i>
+                    1.1 비전
+                </h3>
+                
+                <div class="bg-purple-50 p-8 rounded-lg mb-8 text-center border-l-8 border-purple-500 transform transition-all hover:scale-[1.01] hover:shadow-xl">
+                    <blockquote class="text-xl md:text-3xl italic text-purple-900 font-medium">
+                        "양파로 물든 창녕<span class="md:inline hidden">(Changnyeong Onion Valley)</span>: <br>생산에서 체험까지, 농업과 관광이 융합된 6차산업 선도 지역"
+                    </blockquote>
+                    <div class="mt-4 inline-block">
+                        <div class="flex flex-wrap justify-center items-center gap-4 text-sm md:text-base">
+                            <span class="inline-flex items-center bg-green-100 text-green-800 px-3 py-1 rounded-full">
+                                <i class="fas fa-seedling mr-1"></i> 생산
+                            </span>
+                            <span class="inline-flex items-center bg-purple-100 text-purple-800 px-3 py-1 rounded-full">
+                                <i class="fas fa-industry mr-1"></i> 가공
+                            </span>
+                            <span class="inline-flex items-center bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full">
+                                <i class="fas fa-concierge-bell mr-1"></i> 서비스
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <p class="text-gray-700 text-lg leading-relaxed">
+                    창녕군의 대표 농산물인 양파를 중심으로 1차(생산), 2차(가공), 3차(서비스) 산업을 융합하여 지역 특화형 농촌융복합산업 모델을 구축하고, 이를 통해 지역경제 활성화, 일자리 창출, 인구 유입을 도모하는 것을 목표로 합니다.
+                </p>
+            </div>
+
+            <!-- 목표 -->
+            <div class="bg-white rounded-lg shadow-lg p-8 hover-lift">
+                <h3 class="text-xl font-bold mb-8 text-purple-800 flex items-center">
+                    <i class="fas fa-crosshairs mr-2 text-purple-600"></i>
+                    1.2 핵심 목표
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                    <div class="p-6 border-l-4 border-purple-500 bg-purple-50 rounded-lg shadow-md transform transition-all duration-300 hover:shadow-lg hover:scale-105">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 flex items-center justify-center bg-purple-600 text-white rounded-full mr-3 font-bold shadow-md">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h4 class="font-bold text-purple-800 text-lg">양파 기반 6차산업 육성</h4>
+                        </div>
+                        <p class="text-gray-700">양파 가공 제품 개발 및 상품화, 체험·관광 프로그램 운영을 통한 부가가치 창출</p>
+                    </div>
+                    <div class="p-6 border-l-4 border-green-500 bg-green-50 rounded-lg shadow-md transform transition-all duration-300 hover:shadow-lg hover:scale-105">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 flex items-center justify-center bg-green-600 text-white rounded-full mr-3 font-bold shadow-md">
+                                <i class="fas fa-coins"></i>
+                            </div>
+                            <h4 class="font-bold text-green-800 text-lg">농가 소득 증대</h4>
+                        </div>
+                        <p class="text-gray-700">농산물 단순 판매에서 벗어나 가공, 체험, 관광 등 다양한 수익원 창출</p>
+                    </div>
+                    <div class="p-6 border-l-4 border-blue-500 bg-blue-50 rounded-lg shadow-md transform transition-all duration-300 hover:shadow-lg hover:scale-105">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 flex items-center justify-center bg-blue-600 text-white rounded-full mr-3 font-bold shadow-md">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <h4 class="font-bold text-blue-800 text-lg">일자리 창출</h4>
+                        </div>
+                        <p class="text-gray-700">6차산업 생태계 구축을 통한 지역 내 일자리 창출 및 청년 유입 촉진</p>
+                    </div>
+                    <div class="p-6 border-l-4 border-yellow-500 bg-yellow-50 rounded-lg shadow-md transform transition-all duration-300 hover:shadow-lg hover:scale-105">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 flex items-center justify-center bg-yellow-600 text-white rounded-full mr-3 font-bold shadow-md">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h4 class="font-bold text-yellow-800 text-lg">인구 유입 및 정착</h4>
+                        </div>
+                        <p class="text-gray-700">지역 경제 활성화를 통한 귀농·귀촌 활성화 및 인구 유출 방지</p>
+                    </div>
+                    <div class="p-6 border-l-4 border-red-500 bg-red-50 rounded-lg shadow-md transform transition-all duration-300 hover:shadow-lg hover:scale-105">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 flex items-center justify-center bg-red-600 text-white rounded-full mr-3 font-bold shadow-md">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <h4 class="font-bold text-red-800 text-lg">지역 브랜드 강화</h4>
+                        </div>
+                        <p class="text-gray-700">'창녕 양파'의 브랜드 가치 강화 및 지역 관광자원과의 연계</p>
+                    </div>
+                </div>
+
+                <!-- 성과 지표 -->
+                <div class="mt-10">
+                    <h4 class="text-lg font-semibold mb-6 text-gray-800 flex items-center">
+                        <i class="fas fa-chart-line mr-2 text-purple-600"></i>
+                        1.3 성과 지표
+                    </h4>
+                    <div class="overflow-x-auto bg-white rounded-lg shadow-lg">
+                        <table class="min-w-full bg-white border border-gray-200 rounded-lg overflow-hidden">
+                            <thead class="bg-purple-100">
+                                <tr>
+                                    <th class="py-4 px-6 border-b-2 border-purple-200 font-semibold text-left text-purple-800">구분</th>
+                                    <th class="py-4 px-6 border-b-2 border-purple-200 font-semibold text-left text-purple-800">목표 (5년간)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="hover:bg-purple-50 transition-colors">
+                                    <td class="py-4 px-6 border-b border-gray-200">양파 가공제품 개발 및 상품화</td>
+                                    <td class="py-4 px-6 border-b border-gray-200 font-bold text-purple-700">20종 이상</td>
+                                </tr>
+                                <tr class="hover:bg-purple-50 transition-colors">
+                                    <td class="py-4 px-6 border-b border-gray-200">양파 관련 6차산업 인증 경영체</td>
+                                    <td class="py-4 px-6 border-b border-gray-200 font-bold text-purple-700">15개 이상 육성</td>
+                                </tr>
+                                <tr class="hover:bg-purple-50 transition-colors">
+                                    <td class="py-4 px-6 border-b border-gray-200">양파 관련 일자리 창출</td>
+                                    <td class="py-4 px-6 border-b border-gray-200 font-bold text-purple-700">200개 이상</td>
+                                </tr>
+                                <tr class="hover:bg-purple-50 transition-colors">
+                                    <td class="py-4 px-6 border-b border-gray-200">귀농·귀촌 인구 증가</td>
+                                    <td class="py-4 px-6 border-b border-gray-200 font-bold text-purple-700">300가구 이상</td>
+                                </tr>
+                                <tr class="hover:bg-purple-50 transition-colors">
+                                    <td class="py-4 px-6 border-b border-gray-200">양파 산업 관련 방문객 증가</td>
+                                    <td class="py-4 px-6 border-b border-gray-200 font-bold text-purple-700">연간 5만명 이상</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 섹션 2: 양파 기반 6차산업 추진 전략 -->
+        <section class="mb-20 fade-in-section">
+            <div class="flex items-center mb-6">
+                <div class="bg-purple-600 h-10 w-10 rounded-full flex items-center justify-center text-white mr-4 shadow-lg">
+                    <i class="fas fa-chess"></i>
+                </div>
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800">2. 양파 기반 6차산업 추진 전략</h2>
+            </div>
+            
+            <!-- 1·2·3차 융합 모델 -->
+            <div class="bg-white rounded-lg shadow-lg p-8 mb-12 hover-lift bg-gradient-pattern">
+                <h3 class="text-xl font-bold mb-8 text-purple-800 flex items-center">
+                    <i class="fas fa-sync-alt mr-2 text-purple-600"></i>
+                    2.1 1차(생산) + 2차(가공) + 3차(서비스) 융합 모델
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                    <!-- 1차 산업 -->
+                    <div class="border border-green-200 rounded-lg overflow-hidden shadow-lg transform transition-all hover:shadow-xl duration-300 hover:scale-105">
+                        <div class="bg-green-600 text-white py-4 px-4 font-bold text-center text-lg">
+                            <i class="fas fa-seedling mr-2"></i> 생산(1차) 혁신
+                        </div>
+                        <div class="p-6 bg-green-50">
+                            <ul class="space-y-3 custom-bullet-list">
+                                <li class="flex items-start">
+                                    <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span>양파 품질 경쟁력 강화: 품종 개량, 재배기술 고도화, 친환경 인증 확대</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span>생산 안정화: 스마트팜 도입, 생산 정보화, 기상재해 대응체계 구축</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span>생산자 조직화: 양파 생산자 협의회 강화, 공동선별·출하 활성화</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- 2차 산업 -->
+                    <div class="border border-purple-200 rounded-lg overflow-hidden shadow-lg transform transition-all hover:shadow-xl duration-300 hover:scale-105">
+                        <div class="bg-purple-600 text-white py-4 px-4 font-bold text-center text-lg">
+                            <i class="fas fa-industry mr-2"></i> 가공(2차) 다각화
+                        </div>
+                        <div class="p-6 bg-purple-50">
+                            <ul class="space-y-3 custom-bullet-list">
+                                <li class="flex items-start">
+                                    <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span>양파 가공제품 다양화: 건강식품, 간편식품, 기능성식품 등 개발</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span>가공시설 구축: 소규모 농가형, 마을 공동형, 거점형 가공시설 단계적 구축</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span>품질관리 체계: HACCP, GAP 등 인증 지원, 품질관리 교육·컨설팅</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- 3차 산업 -->
+                    <div class="border border-yellow-200 rounded-lg overflow-hidden shadow-lg transform transition-all hover:shadow-xl duration-300 hover:scale-105">
+                        <div class="bg-yellow-500 text-white py-4 px-4 font-bold text-center text-lg">
+                            <i class="fas fa-concierge-bell mr-2"></i> 서비스(3차) 연계
+                        </div>
+                        <div class="p-6 bg-yellow-50">
+                            <ul class="space-y-3 custom-bullet-list">
+                                <li class="flex items-start">
+                                    <svg class="h-5 w-5 text-yellow-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span>체험·관광 프로그램: 양파 수확체험, 요리체험, 가공체험 등 프로그램 개발</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="h-5 w-5 text-yellow-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span>직거래·유통 활성화: 양파밸리 직매장, 온라인 쇼핑몰, 양파마켓 등 운영</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="h-5 w-5 text-yellow-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span>지역 관광자원 연계: 우포늪, 부곡온천 등과 연계한 관광 상품 개발</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 6차산업 모델 그래픽 -->
+                <div class="flex justify-center mb-6">
+                    <div class="bg-white p-6 rounded-lg shadow-lg w-full graph-container" style="max-width: 500px;">
+                        <h4 class="text-center font-semibold text-gray-800 mb-6 text-lg">창녕 양파 6차산업 모델</h4>
+                        <div class="flex items-center justify-center" style="height: 400px;">
+                            <canvas id="sixth-industry-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 핵심 사업 영역 -->
+            <div class="bg-white rounded-lg shadow-lg p-8 hover-lift">
+                <h3 class="text-xl font-bold mb-8 text-purple-800 flex items-center">
+                    <i class="fas fa-project-diagram mr-2 text-purple-600"></i>
+                    2.2 핵심 사업 영역
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
+                    <div class="bg-purple-50 p-6 rounded-lg text-center shadow-md transform transition-all duration-300 hover:shadow-xl hover:bg-purple-100">
+                        <div class="bg-purple-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4 text-purple-600 text-2xl shadow-md">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <h4 class="font-semibold text-purple-800 mb-3 text-lg">양파밸리 조성 사업</h4>
+                        <p class="text-gray-600">양파의 역사, 문화, 산업을 체험할 수 있는 복합 공간 조성</p>
+                    </div>
+                    <div class="bg-purple-50 p-6 rounded-lg text-center shadow-md transform transition-all duration-300 hover:shadow-xl hover:bg-purple-100">
+                        <div class="bg-purple-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4 text-purple-600 text-2xl shadow-md">
+                            <i class="fas fa-blender"></i>
+                        </div>
+                        <h4 class="font-semibold text-purple-800 mb-3 text-lg">양파 가공 활성화 사업</h4>
+                        <p class="text-gray-600">양파 기반 건강식품, 가공식품 개발 및 상품화 지원</p>
+                    </div>
+                    <div class="bg-purple-50 p-6 rounded-lg text-center shadow-md transform transition-all duration-300 hover:shadow-xl hover:bg-purple-100">
+                        <div class="bg-purple-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4 text-purple-600 text-2xl shadow-md">
+                            <i class="fas fa-hiking"></i>
+                        </div>
+                        <h4 class="font-semibold text-purple-800 mb-3 text-lg">양파 체험관광 활성화 사업</h4>
+                        <p class="text-gray-600">양파 생산, 가공, 요리 등 체험 프로그램 개발 및 운영</p>
+                    </div>
+                    <div class="bg-purple-50 p-6 rounded-lg text-center shadow-md transform transition-all duration-300 hover:shadow-xl hover:bg-purple-100">
+                        <div class="bg-purple-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4 text-purple-600 text-2xl shadow-md">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h4 class="font-semibold text-purple-800 mb-3 text-lg">양파 브랜드 강화 사업</h4>
+                        <p class="text-gray-600">'창녕 양파' 통합 브랜드 개발 및 마케팅 강화</p>
+                    </div>
+                    <div class="bg-purple-50 p-6 rounded-lg text-center shadow-md transform transition-all duration-300 hover:shadow-xl hover:bg-purple-100">
+                        <div class="bg-purple-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4 text-purple-600 text-2xl shadow-md">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <h4 class="font-semibold text-purple-800 mb-3 text-lg">인력 양성 및 창업 지원 사업</h4>
+                        <p class="text-gray-600">양파 6차산업 전문인력 양성 교육 프로그램 운영</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 섹션 3: 세부 사업 계획 -->
+        <section class="mb-20 fade-in-section">
+            <div class="flex items-center mb-6">
+                <div class="bg-purple-600 h-10 w-10 rounded-full flex items-center justify-center text-white mr-4 shadow-lg">
+                    <i class="fas fa-tasks"></i>
+                </div>
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800">3. 세부 사업 계획</h2>
+            </div>
+            
+            <!-- 창녕 양파밸리 조성 사업 -->
+            <div class="bg-white rounded-lg shadow-lg p-8 mb-12 hover-lift bg-gradient-pattern">
+                <div class="flex flex-wrap items-center mb-6">
+                    <div class="bg-purple-100 w-10 h-10 rounded-full flex items-center justify-center mr-3 text-purple-600 text-xl shadow-md">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-purple-800">3.1 "창녕 양파밸리" 조성 사업</h3>
+                </div>
+                
+                <div class="flex flex-col md:flex-row gap-8 mb-8">
+                    <div class="md:w-1/2">
+                        <div class="p-6 bg-white rounded-lg shadow-md mb-6">
+                            <h4 class="font-semibold text-gray-800 mb-4 flex items-center">
+                                <i class="fas fa-info-circle mr-2 text-purple-600"></i>
+                                사업 개요
+                            </h4>
+                            <p class="text-gray-700 mb-4 leading-relaxed">
+                                창녕 양파의 생산, 가공, 체험, 판매, 전시가 통합된 복합 공간 조성
+                            </p>
+                            <div class="bg-purple-50 p-4 rounded-lg mb-4">
+                                <p class="text-gray-700 mb-1">
+                                    <strong class="text-purple-800">위치:</strong> 창녕군 대지면 석리(양파 시배지) 일원
+                                </p>
+                                <p class="text-gray-700">
+                                    <strong class="text-purple-800">면적:</strong> 약 10만㎡
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="p-6 bg-white rounded-lg shadow-md mb-6">
+                            <h4 class="font-semibold text-gray-800 mb-4 flex items-center">
+                                <i class="fas fa-warehouse mr-2 text-purple-600"></i>
+                                주요 시설
+                            </h4>
+                            <ul class="space-y-3 custom-bullet-list">
+                                <li class="flex items-start">
+                                    <span class="inline-block bg-purple-500 w-2 h-2 rounded-full mt-2 mr-2"></span>
+                                    <span><strong class="text-purple-800">양파 가공지원센터:</strong> 공동 가공시설, 제품개발실, 품질관리실 등</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="inline-block bg-purple-500 w-2 h-2 rounded-full mt-2 mr-2"></span>
+                                    <span><strong class="text-purple-800">양파 역사문화관:</strong> 양파 시배 역사, 양파 재배 변천사, 성씨고가 연계 전시</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="inline-block bg-purple-500 w-2 h-2 rounded-full mt-2 mr-2"></span>
+                                    <span><strong class="text-purple-800">양파 푸드랩:</strong> 양파 활용 요리 교실, 제품 개발실, 시식장 등</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="inline-block bg-purple-500 w-2 h-2 rounded-full mt-2 mr-2"></span>
+                                    <span><strong class="text-purple-800">양파 마켓:</strong> 창녕 양파 및 가공제품 직판장, 양파 농가 판매장 등</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="inline-block bg-purple-500 w-2 h-2 rounded-full mt-2 mr-2"></span>
+                                    <span><strong class="text-purple-800">양파 체험장:</strong> 양파 재배·수확 체험, 가공 체험, 요리 체험 등</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="inline-block bg-purple-500 w-2 h-2 rounded-full mt-2 mr-2"></span>
+                                    <span><strong class="text-purple-800">양파 창업지원센터:</strong> 창업 공간, 컨설팅 공간, 교육장 등</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="p-6 bg-white rounded-lg shadow-md">
+                            <h4 class="font-semibold text-gray-800 mb-4 flex items-center">
+                                <i class="fas fa-users-cog mr-2 text-purple-600"></i>
+                                운영 방식
+                            </h4>
+                            <p class="text-gray-700 mb-4">
+                                <strong class="text-purple-800">민관 협력 방식으로 운영:</strong> 
+                                <span class="bg-purple-100 px-2 py-1 rounded-full text-sm font-medium text-purple-800 inline-block mt-1 mr-1">창녕군</span>
+                                <span class="bg-purple-100 px-2 py-1 rounded-full text-sm font-medium text-purple-800 inline-block mt-1 mr-1">농업기술센터</span>
+                                <span class="bg-purple-100 px-2 py-1 rounded-full text-sm font-medium text-purple-800 inline-block mt-1 mr-1">생산자단체</span>
+                                <span class="bg-purple-100 px-2 py-1 rounded-full text-sm font-medium text-purple-800 inline-block mt-1">마을기업</span>
+                                등
+                            </p>
+                            <p class="text-gray-700">
+                                <strong class="text-purple-800">수익 모델:</strong> 
+                                <span class="bg-green-100 px-2 py-1 rounded-full text-sm font-medium text-green-800 inline-block mt-1 mr-1">시설 임대</span>
+                                <span class="bg-green-100 px-2 py-1 rounded-full text-sm font-medium text-green-800 inline-block mt-1 mr-1">체험료</span>
+                                <span class="bg-green-100 px-2 py-1 rounded-full text-sm font-medium text-green-800 inline-block mt-1 mr-1">판매 수수료</span>
+                                <span class="bg-green-100 px-2 py-1 rounded-full text-sm font-medium text-green-800 inline-block mt-1">교육비</span>
+                                등
+                            </p>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2">
+                        <div class="bg-white p-6 rounded-lg shadow-lg h-full hover-lift">
+                            <h4 class="font-semibold text-center text-gray-800 mb-6 flex items-center justify-center">
+                                <i class="fas fa-building mr-2 text-purple-600"></i>
+                                창녕 양파밸리 개념도
+                            </h4>
+                            <div class="relative h-96 bg-white rounded-lg overflow-hidden border border-gray-300 shadow-md">
+                                <img src="assets/images/Generated_Image_24virk24virk24vi.jfif" alt="창녕 양파밸리 조감도" class="absolute inset-0 w-full h-full object-cover">
+                                <div class="absolute bottom-0 left-0 right-0 bg-purple-800 bg-opacity-85 p-3 text-white backdrop-filter backdrop-blur-sm">
+                                    <p class="text-center font-semibold">창녕 양파의 생산, 가공, 체험, 판매, 전시가 통합된 복합 공간</p>
+                                </div>
+                                <div class="absolute top-4 right-4">
+                                    <div class="bg-white rounded-full shadow-lg p-2 animate-pulse">
+                                        <svg class="h-6 w-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-6 p-4 bg-purple-50 rounded-lg">
+                                <h5 class="font-semibold text-purple-800 mb-3 flex items-center">
+                                    <i class="fas fa-star mr-2"></i>
+                                    기대 효과
+                                </h5>
+                                <ul class="space-y-2">
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                        <span>생산-가공-체험-전시-판매의 통합적 운영으로 시너지 효과 창출</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                        <span>지역 랜드마크 역할로 관광객 유입 및 지역 이미지 제고</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                        <span>양파 관련 창업 및 일자리 창출의 거점 역할</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 양파 가공 활성화 사업 -->
+            <div class="bg-white rounded-lg shadow-lg p-8 mb-12 hover-lift">
+                <div class="flex flex-wrap items-center mb-6">
+                    <div class="bg-purple-100 w-10 h-10 rounded-full flex items-center justify-center mr-3 text-purple-600 text-xl shadow-md">
+                        <i class="fas fa-blender"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-purple-800">3.2 양파 가공 활성화 사업</h3>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                    <div class="bg-purple-50 p-6 rounded-lg shadow-md transform transition-transform duration-300 hover:shadow-lg hover:scale-105">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 flex items-center justify-center bg-purple-100 text-purple-600 rounded-full mr-3 shadow-md">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <h4 class="font-semibold text-purple-800">양파 가공제품 개발 지원</h4>
+                        </div>
+                        <ul class="space-y-3 custom-bullet-list">
+                            <li>양파 기반 건강식품 개발: 양파즙, 양파환, 발효액, 건조양파 등</li>
+                            <li>양파 기반 간편식품 개발: 양파장아찌, 양파 김치, 양파 드레싱 등</li>
+                            <li>양파 활용 프리미엄 식품: 양파 식초, 양파 와인, 양파 고급 조미료 등</li>
+                            <li>양파 테마 특화 음식: 양파빵, 양파과자, 양파국수, 양파고디탕 등</li>
+                        </ul>
+                    </div>
+                    <div class="bg-purple-50 p-6 rounded-lg shadow-md transform transition-transform duration-300 hover:shadow-lg hover:scale-105">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 flex items-center justify-center bg-purple-100 text-purple-600 rounded-full mr-3 shadow-md">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h4 class="font-semibold text-purple-800">농가 가공 역량 강화</h4>
+                        </div>
+                        <ul class="space-y-3 custom-bullet-list">
+                            <li>소규모 농가 가공시설 지원: 가공설비, 포장설비 등 지원</li>
+                            <li>가공기술 교육: 품목별 가공기술, 품질관리, 위생관리 교육</li>
+                            <li>포장·디자인 개발: 제품 포장재, 디자인, 브랜드 개발 지원</li>
+                            <li>인증 취득 지원: HACCP, 전통식품 인증, 6차산업 인증 등</li>
+                        </ul>
+                    </div>
+                    <div class="bg-purple-50 p-6 rounded-lg shadow-md transform transition-transform duration-300 hover:shadow-lg hover:scale-105">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 flex items-center justify-center bg-purple-100 text-purple-600 rounded-full mr-3 shadow-md">
+                                <i class="fas fa-industry"></i>
+                            </div>
+                            <h4 class="font-semibold text-purple-800">공동 가공시설 구축</h4>
+                        </div>
+                        <ul class="space-y-3 custom-bullet-list">
+                            <li>마을 단위 공동 가공시설 구축: 소규모 마을기업, 생산자조직 중심</li>
+                            <li>양파밸리 내 중규모 가공센터 구축: 고부가가치 제품 생산 중심</li>
+                            <li>가공장비 공유 시스템: 고가 장비 공동 활용, 예약 시스템 구축</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+                    <h4 class="font-semibold text-center text-gray-800 mb-6 flex items-center justify-center">
+                        <i class="fas fa-road mr-2 text-purple-600"></i>
+                        양파 가공제품 개발 로드맵
+                    </h4>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white border border-gray-200 shadow-md rounded-lg overflow-hidden">
+                            <thead class="bg-purple-100">
+                                <tr>
+                                    <th class="py-4 px-6 border-b font-semibold text-purple-800">단계</th>
+                                    <th class="py-4 px-6 border-b font-semibold text-purple-800">기간</th>
+                                    <th class="py-4 px-6 border-b font-semibold text-purple-800">주요 추진 내용</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="hover:bg-purple-50 transition-colors">
+                                    <td class="py-4 px-6 border-b font-medium">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 flex items-center justify-center bg-purple-600 text-white rounded-full mr-3 font-bold shadow-md">1</div>
+                                            <span>1단계</span>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-6 border-b">1-2년차</td>
+                                    <td class="py-4 px-6 border-b">
+                                        <ul class="list-disc pl-5 space-y-1">
+                                            <li>기초 가공제품 개발 (양파즙, 건조양파, 양파분말 등)</li>
+                                            <li>소규모 농가 가공설비 지원</li>
+                                            <li>가공기술 및 품질관리 교육</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-purple-50 transition-colors">
+                                    <td class="py-4 px-6 border-b font-medium">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 flex items-center justify-center bg-purple-600 text-white rounded-full mr-3 font-bold shadow-md">2</div>
+                                            <span>2단계</span>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-6 border-b">3-4년차</td>
+                                    <td class="py-4 px-6 border-b">
+                                        <ul class="list-disc pl-5 space-y-1">
+                                            <li>고부가가치 가공제품 개발 (발효액, 건강식품, 기능성 식품 등)</li>
+                                            <li>마을 단위 공동 가공시설 구축</li>
+                                            <li>품질인증 취득 및 브랜드화</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-purple-50 transition-colors">
+                                    <td class="py-4 px-6 border-b font-medium">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 flex items-center justify-center bg-purple-600 text-white rounded-full mr-3 font-bold shadow-md">3</div>
+                                            <span>3단계</span>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-6 border-b">5년차 이후</td>
+                                    <td class="py-4 px-6 border-b">
+                                        <ul class="list-disc pl-5 space-y-1">
+                                            <li>프리미엄 가공제품 개발 (양파 와인, 고급 조미료 등)</li>
+                                            <li>거점형 가공센터 구축 및 운영</li>
+                                            <li>제품 수출 및 글로벌 브랜드화</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 양파 체험관광 활성화 사업 -->
+            <div class="bg-white rounded-lg shadow-lg p-8 mb-12 hover-lift bg-gradient-pattern">
+                <div class="flex flex-wrap items-center mb-6">
+                    <div class="bg-purple-100 w-10 h-10 rounded-full flex items-center justify-center mr-3 text-purple-600 text-xl shadow-md">
+                        <i class="fas fa-hiking"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-purple-800">3.3 양파 체험관광 활성화 사업</h3>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h4 class="font-semibold text-gray-800 mb-5 flex items-center">
+                            <i class="fas fa-hands-helping mr-2 text-purple-600"></i>
+                            양파 체험 프로그램 개발
+                        </h4>
+                        
+                        <div class="mb-8">
+                            <h5 class="font-medium text-purple-700 mb-4 border-b border-purple-200 pb-2">계절별 체험 프로그램</h5>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400 shadow-md transform transition-all duration-300 hover:shadow-lg hover:scale-105">
+                                    <h6 class="font-medium text-yellow-800 mb-2 flex items-center">
+                                        <i class="fas fa-sun mr-2"></i>
+                                        봄
+                                    </h6>
+                                    <ul class="space-y-1 text-sm">
+                                        <li>- 양파 수확 체험</li>
+                                        <li>- 어린이 양파학교 운영</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-400 shadow-md transform transition-all duration-300 hover:shadow-lg hover:scale-105">
+                                    <h6 class="font-medium text-red-800 mb-2 flex items-center">
+                                        <i class="fas fa-umbrella-beach mr-2"></i>
+                                        여름
+                                    </h6>
+                                    <ul class="space-y-1 text-sm">
+                                        <li>- 양파 요리 경연대회</li>
+                                        <li>- 양파 가공 체험</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-orange-50 p-4 rounded-lg border-l-4 border-orange-400 shadow-md transform transition-all duration-300 hover:shadow-lg hover:scale-105">
+                                    <h6 class="font-medium text-orange-800 mb-2 flex items-center">
+                                        <i class="fas fa-leaf mr-2"></i>
+                                        가을
+                                    </h6>
+                                    <ul class="space-y-1 text-sm">
+                                        <li>- 양파 심기 체험</li>
+                                        <li>- 양파 건강교실</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400 shadow-md transform transition-all duration-300 hover:shadow-lg hover:scale-105">
+                                    <h6 class="font-medium text-blue-800 mb-2 flex items-center">
+                                        <i class="fas fa-snowflake mr-2"></i>
+                                        겨울
+                                    </h6>
+                                    <ul class="space-y-1 text-sm">
+                                        <li>- 양파랑 겨울방학</li>
+                                        <li>- 양파 발효 체험</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h5 class="font-medium text-purple-700 mb-4 border-b border-purple-200 pb-2">대상별 맞춤형 프로그램</h5>
+                            <div class="space-y-4">
+                                <div class="bg-purple-50 p-4 rounded-lg shadow-md transform transition-all duration-300 hover:shadow-lg hover:scale-105">
+                                    <h6 class="font-medium text-purple-800 mb-2 flex items-center">
+                                        <i class="fas fa-users mr-2"></i>
+                                        가족 단위
+                                    </h6>
+                                    <p class="text-sm">양파 농촌체험, 양파 요리교실</p>
+                                </div>
+                                <div class="bg-purple-50 p-4 rounded-lg shadow-md transform transition-all duration-300 hover:shadow-lg hover:scale-105">
+                                    <h6 class="font-medium text-purple-800 mb-2 flex items-center">
+                                        <i class="fas fa-graduation-cap mr-2"></i>
+                                        학생 단위
+                                    </h6>
+                                    <p class="text-sm">양파 농업교육, 식생활 교육</p>
+                                </div>
+                                <div class="bg-purple-50 p-4 rounded-lg shadow-md transform transition-all duration-300 hover:shadow-lg hover:scale-105">
+                                    <h6 class="font-medium text-purple-800 mb-2 flex items-center">
+                                        <i class="fas fa-building mr-2"></i>
+                                        기업 단위
+                                    </h6>
+                                    <p class="text-sm">양파 농촌 봉사활동, 팀빌딩 프로그램</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h4 class="font-semibold text-gray-800 mb-5 flex items-center">
+                            <i class="fas fa-calendar-alt mr-2 text-purple-600"></i>
+                            양파 축제 및 이벤트
+                        </h4>
+                        <div class="space-y-4 mb-8">
+                            <div class="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-500 shadow-md transform transition-all duration-300 hover:shadow-lg hover:translate-x-2">
+                                <h5 class="font-medium text-purple-800 mb-2 flex items-center">
+                                    <i class="fas fa-glass-cheers mr-2"></i>
+                                    창녕 양파축제 확대 개편
+                                </h5>
+                                <p class="text-sm text-gray-700">기존 축제의 콘텐츠 강화, 체험 요소 확대</p>
+                            </div>
+                            <div class="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-500 shadow-md transform transition-all duration-300 hover:shadow-lg hover:translate-x-2">
+                                <h5 class="font-medium text-purple-800 mb-2 flex items-center">
+                                    <i class="fas fa-utensils mr-2"></i>
+                                    양파 요리 페스티벌
+                                </h5>
+                                <p class="text-sm text-gray-700">양파 활용 요리 경연, 유명 셰프 초청 쿠킹쇼</p>
+                            </div>
+                            <div class="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-500 shadow-md transform transition-all duration-300 hover:shadow-lg hover:translate-x-2">
+                                <h5 class="font-medium text-purple-800 mb-2 flex items-center">
+                                    <i class="fas fa-running mr-2"></i>
+                                    창녕 양파 마라톤대회
+                                </h5>
+                                <p class="text-sm text-gray-700">양파밭 코스를 달리는 특색 있는 마라톤</p>
+                            </div>
+                            <div class="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-500 shadow-md transform transition-all duration-300 hover:shadow-lg hover:translate-x-2">
+                                <h5 class="font-medium text-purple-800 mb-2 flex items-center">
+                                    <i class="fas fa-heartbeat mr-2"></i>
+                                    양파 건강 세미나
+                                </h5>
+                                <p class="text-sm text-gray-700">양파의 건강 효능 관련 세미나, 건강 체크 등</p>
+                            </div>
+                        </div>
+                        
+                        <h4 class="font-semibold text-gray-800 mb-5 flex items-center">
+                            <i class="fas fa-link mr-2 text-purple-600"></i>
+                            지역 관광자원 연계
+                        </h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="bg-green-50 p-4 rounded-lg shadow-md transform transition-all duration-300 hover:shadow-lg hover:scale-105">
+                                <h5 class="font-medium text-green-800 mb-2 flex items-center">
+                                    <i class="fas fa-water mr-2"></i>
+                                    우포늪-양파밸리 연계
+                                </h5>
+                                <p class="text-sm text-gray-700">생태관광-농촌체험 연계 상품</p>
+                            </div>
+                            <div class="bg-blue-50 p-4 rounded-lg shadow-md transform transition-all duration-300 hover:shadow-lg hover:scale-105">
+                                <h5 class="font-medium text-blue-800 mb-2 flex items-center">
+                                    <i class="fas fa-hot-tub mr-2"></i>
+                                    부곡온천-양파 건강 프로그램
+                                </h5>
+                                <p class="text-sm text-gray-700">온천-양파 건강식 연계 상품</p>
+                            </div>
+                            <div class="bg-yellow-50 p-4 rounded-lg shadow-md transform transition-all duration-300 hover:shadow-lg hover:scale-105">
+                                <h5 class="font-medium text-yellow-800 mb-2 flex items-center">
+                                    <i class="fas fa-ticket-alt mr-2"></i>
+                                    창녕군 통합 관광 패스
+                                </h5>
+                                <p class="text-sm text-gray-700">주요 관광지-양파밸리 연계 할인 혜택</p>
+                            </div>
+                            <div class="bg-red-50 p-4 rounded-lg shadow-md transform transition-all duration-300 hover:shadow-lg hover:scale-105">
+                                <h5 class="font-medium text-red-800 mb-2 flex items-center">
+                                    <i class="fas fa-bed mr-2"></i>
+                                    지역 숙박시설 연계
+                                </h5>
+                                <p class="text-sm text-gray-700">농가 민박, 펜션, 온천 리조트 등과 연계</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h4 class="font-semibold text-center text-gray-800 mb-6 flex items-center justify-center">
+                        <i class="fas fa-clipboard-list mr-2 text-purple-600"></i>
+                        체험관광 프로그램 예시
+                    </h4>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white border border-gray-200 shadow-md rounded-lg overflow-hidden">
+                            <thead class="bg-purple-100">
+                                <tr>
+                                    <th class="py-4 px-6 border-b font-semibold text-purple-800">프로그램명</th>
+                                    <th class="py-4 px-6 border-b font-semibold text-purple-800">대상</th>
+                                    <th class="py-4 px-6 border-b font-semibold text-purple-800">주요 내용</th>
+                                    <th class="py-4 px-6 border-b font-semibold text-purple-800">운영 시기</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="hover:bg-purple-50 transition-colors">
+                                    <td class="py-4 px-6 border-b font-medium text-purple-700">양파 수확 체험</td>
+                                    <td class="py-4 px-6 border-b">가족, 단체</td>
+                                    <td class="py-4 px-6 border-b">양파 수확 체험, 수확 양파 포장, 가져가기</td>
+                                    <td class="py-4 px-6 border-b"><span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium">4-5월</span></td>
+                                </tr>
+                                <tr class="hover:bg-purple-50 transition-colors">
+                                    <td class="py-4 px-6 border-b font-medium text-purple-700">양파 요리 클래스</td>
+                                    <td class="py-4 px-6 border-b">성인, 학생</td>
+                                    <td class="py-4 px-6 border-b">양파 활용 건강 요리 배우기, 시식</td>
+                                    <td class="py-4 px-6 border-b"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">연중</span></td>
+                                </tr>
+                                <tr class="hover:bg-purple-50 transition-colors">
+                                    <td class="py-4 px-6 border-b font-medium text-purple-700">양파 약초학교</td>
+                                    <td class="py-4 px-6 border-b">성인</td>
+                                    <td class="py-4 px-6 border-b">양파의 약효, 건강 효능, 발효액 만들기</td>
+                                    <td class="py-4 px-6 border-b"><span class="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs font-medium">9-11월</span></td>
+                                </tr>
+                                <tr class="hover:bg-purple-50 transition-colors">
+                                    <td class="py-4 px-6 border-b font-medium text-purple-700">양파 농부 체험</td>
+                                    <td class="py-4 px-6 border-b">일반, 귀농희망자</td>
+                                    <td class="py-4 px-6 border-b">양파 재배 전 과정 체험, 영농 기술 교육</td>
+                                    <td class="py-4 px-6 border-b"><span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-medium">10-5월</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 양파 브랜드 및 유통혁신 사업 -->
+            <div class="bg-white rounded-lg shadow-lg p-8 mb-12 hover-lift">
+                <div class="flex flex-wrap items-center mb-6">
+                    <div class="bg-purple-100 w-10 h-10 rounded-full flex items-center justify-center mr-3 text-purple-600 text-xl shadow-md">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-purple-800">3.4 양파 브랜드 및 유통혁신 사업</h3>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                    <div class="bg-purple-50 p-6 rounded-lg shadow-md transform transition-all duration-300 hover:shadow-lg hover:scale-105">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 flex items-center justify-center bg-purple-100 text-purple-600 rounded-full mr-3 shadow-md">
+                                <i class="fas fa-trademark"></i>
+                            </div>
+                            <h4 class="font-semibold text-purple-800">통합 브랜드 개발</h4>
+                        </div>
+                        <ul class="space-y-3 custom-bullet-list">
+                            <li>'창녕 양파밸리(Changnyeong Onion Valley)' 통합 브랜드 개발</li>
+                            <li>제품 유형별 서브 브랜드 개발: 신선양파, 가공식품, 건강식품 등</li>
+                            <li>브랜드 스토리텔링 강화: 시배지 역사, 생산자 이야기, 양파 효능 등</li>
+                            <li>브랜드 디자인 시스템 구축: 패키지, 라벨, 홍보물 등 통일된 디자인</li>
+                        </ul>
+                    </div>
+                    <div class="bg-purple-50 p-6 rounded-lg shadow-md transform transition-all duration-300 hover:shadow-lg hover:scale-105">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 flex items-center justify-center bg-purple-100 text-purple-600 rounded-full mr-3 shadow-md">
+                                <i class="fas fa-store"></i>
+                            </div>
+                            <h4 class="font-semibold text-purple-800">유통채널 다변화</h4>
+                        </div>
+                        <h5 class="font-medium text-purple-700 mb-2 text-sm">온라인 판매 강화:</h5>
+                        <ul class="space-y-1 mb-4 ml-4 text-sm">
+                            <li>• 양파밸리 전용 온라인 쇼핑몰 구축</li>
+                            <li>• 주요 오픈마켓, 농산물 전문몰 입점 지원</li>
+                            <li>• SNS 마케팅, 라이브 커머스 활성화</li>
+                        </ul>
+                        <h5 class="font-medium text-purple-700 mb-2 text-sm">오프라인 판매망 확대:</h5>
+                        <ul class="space-y-1 ml-4 text-sm">
+                            <li>• 양파밸리 직매장 운영</li>
+                            <li>• 도시 안테나숍 설치(대구, 부산, 서울 등)</li>
+                            <li>• 대형마트, 백화점 등 기획전 정기 개최</li>
+                        </ul>
+                    </div>
+                    <div class="bg-purple-50 p-6 rounded-lg shadow-md transform transition-all duration-300 hover:shadow-lg hover:scale-105">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 flex items-center justify-center bg-purple-100 text-purple-600 rounded-full mr-3 shadow-md">
+                                <i class="fas fa-bullhorn"></i>
+                            </div>
+                            <h4 class="font-semibold text-purple-800">양파 소비 촉진 마케팅</h4>
+                        </div>
+                        <ul class="space-y-3 custom-bullet-list">
+                            <li>양파 건강 캠페인: 양파의 건강 효능 홍보, 건강기능식품 마케팅</li>
+                            <li>양파 요리 홍보: 양파 활용 레시피 개발, 쿡북 출간, 요리 영상 제작</li>
+                            <li>체험 마케팅: 도시 소비자 대상 양파 체험 프로그램, 팸투어 등</li>
+                            <li>공동 마케팅: 지역 농산물, 관광지와 연계한 통합 마케팅</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h4 class="font-semibold text-center text-gray-800 mb-6 flex items-center justify-center">
+                        <i class="fas fa-chart-line mr-2 text-purple-600"></i>
+                        브랜드 개발 및 마케팅 전략
+                    </h4>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white border border-gray-200 shadow-md rounded-lg overflow-hidden">
+                            <thead class="bg-purple-100">
+                                <tr>
+                                    <th class="py-4 px-6 border-b font-semibold text-purple-800">전략</th>
+                                    <th class="py-4 px-6 border-b font-semibold text-purple-800">주요 활동</th>
+                                    <th class="py-4 px-6 border-b font-semibold text-purple-800">기대효과</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="hover:bg-purple-50 transition-colors">
+                                    <td class="py-4 px-6 border-b font-medium">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 flex items-center justify-center bg-purple-100 text-purple-600 rounded-full mr-3 shadow-md">
+                                                <i class="fas fa-palette"></i>
+                                            </div>
+                                            <span>브랜드 정체성 구축</span>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-6 border-b">
+                                        <ul class="list-disc pl-5 space-y-1">
+                                            <li>양파 시배지 스토리 발굴</li>
+                                            <li>CI, BI 개발</li>
+                                            <li>브랜드 메시지 개발</li>
+                                        </ul>
+                                    </td>
+                                    <td class="py-4 px-6 border-b">
+                                        <ul class="list-disc pl-5 space-y-1">
+                                            <li>소비자 인지도 강화</li>
+                                            <li>타 지역 양파와 차별화</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-purple-50 transition-colors">
+                                    <td class="py-4 px-6 border-b font-medium">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 flex items-center justify-center bg-purple-100 text-purple-600 rounded-full mr-3 shadow-md">
+                                                <i class="fas fa-hashtag"></i>
+                                            </div>
+                                            <span>디지털 마케팅</span>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-6 border-b">
+                                        <ul class="list-disc pl-5 space-y-1">
+                                            <li>SNS 채널 운영 활성화</li>
+                                            <li>인플루언서 협업</li>
+                                            <li>온라인 쇼핑몰 구축</li>
+                                        </ul>
+                                    </td>
+                                    <td class="py-4 px-6 border-b">
+                                        <ul class="list-disc pl-5 space-y-1">
+                                            <li>MZ세대 고객 확보</li>
+                                            <li>직거래 확대</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-purple-50 transition-colors">
+                                    <td class="py-4 px-6 border-b font-medium">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 flex items-center justify-center bg-purple-100 text-purple-600 rounded-full mr-3 shadow-md">
+                                                <i class="fas fa-hands"></i>
+                                            </div>
+                                            <span>실감형 체험 마케팅</span>
+                                        </div>
+                                    </td>
+
+
+
+<td class="py-4 px-6 border-b">
+                                        <ul class="list-disc pl-5 space-y-1">
+                                            <li>양파밸리 투어 프로그램</li>
+                                            <li>도시 팝업 스토어</li>
+                                            <li>양파 건강 캠페인</li>
+                                        </ul>
+                                    </td>
+                                    <td class="py-4 px-6 border-b">
+                                        <ul class="list-disc pl-5 space-y-1">
+                                            <li>브랜드 충성도 제고</li>
+                                            <li>소비자 경험 강화</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 인력 양성 및 창업 지원 사업 -->
+            <div class="bg-white rounded-lg shadow-lg p-8 mb-12 hover-lift bg-gradient-pattern">
+                <div class="flex flex-wrap items-center mb-6">
+                    <div class="bg-purple-100 w-10 h-10 rounded-full flex items-center justify-center mr-3 text-purple-600 text-xl shadow-md">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-purple-800">3.5 인력 양성 및 창업 지원 사업</h3>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                    <div class="bg-purple-50 p-6 rounded-lg shadow-md transform transition-all duration-300 hover:shadow-lg hover:scale-105">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 flex items-center justify-center bg-purple-100 text-purple-600 rounded-full mr-3 shadow-md">
+                                <i class="fas fa-chalkboard-teacher"></i>
+                            </div>
+                            <h4 class="font-semibold text-purple-800">전문인력 양성</h4>
+                        </div>
+                        <ul class="space-y-3 custom-bullet-list">
+                            <li>양파 6차산업 아카데미 운영: 생산, 가공, 마케팅, 체험관광 분야 교육</li>
+                            <li>예비 창업자 육성 과정: 청년, 귀농인 대상 6차산업 창업 교육</li>
+                            <li>양파 전문가 양성 과정: 양파 소믈리에, 양파 요리 전문가 등 양성</li>
+                            <li>현장 실습 프로그램: 선도 경영체 인턴십, 국내외 우수사례 연수</li>
+                        </ul>
+                    </div>
+                    <div class="bg-purple-50 p-6 rounded-lg shadow-md transform transition-all duration-300 hover:shadow-lg hover:scale-105">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 flex items-center justify-center bg-purple-100 text-purple-600 rounded-full mr-3 shadow-md">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <h4 class="font-semibold text-purple-800">창업 인큐베이팅</h4>
+                        </div>
+                        <ul class="space-y-3 custom-bullet-list">
+                            <li>양파 창업지원센터 운영: 사무공간, 시제품 제작실, 컨설팅룸 등 제공</li>
+                            <li>창업 멘토링: 분야별 전문가 멘토링, 경영 컨설팅 제공</li>
+                            <li>초기 사업화 지원: 시제품 개발, 인증 취득, 마케팅 등 지원</li>
+                            <li>자금 연계: 정부 지원사업, 농식품 모태펀드, 크라우드펀딩 등 연계</li>
+                        </ul>
+                    </div>
+                    <div class="bg-purple-50 p-6 rounded-lg shadow-md transform transition-all duration-300 hover:shadow-lg hover:scale-105">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 flex items-center justify-center bg-purple-100 text-purple-600 rounded-full mr-3 shadow-md">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                            <h4 class="font-semibold text-purple-800">청년 귀농·귀촌 지원</h4>
+                        </div>
+                        <ul class="space-y-3 custom-bullet-list">
+                            <li>청년 양파농부 육성 프로젝트: 양파 재배기술 교육, 정착 지원</li>
+                            <li>청년 창업농장: 양파 재배·가공·체험 융합형 청년 창업농장 지원</li>
+                            <li>빈집 리모델링 지원: 빈집을 활용한 청년 귀농인 주거·창업 공간 지원</li>
+                            <li>융복합 창업 지원: 양파 생산+가공, 양파 생산+체험, 양파 가공+관광 등</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h4 class="font-semibold text-center text-gray-800 mb-6 flex items-center justify-center">
+                        <i class="fas fa-map-signs mr-2 text-purple-600"></i>
+                        인력 양성 로드맵
+                    </h4>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white border border-gray-200 shadow-md rounded-lg overflow-hidden">
+                            <thead class="bg-purple-100">
+                                <tr>
+                                    <th class="py-4 px-6 border-b font-semibold text-purple-800">단계</th>
+                                    <th class="py-4 px-6 border-b font-semibold text-purple-800">양성 대상</th>
+                                    <th class="py-4 px-6 border-b font-semibold text-purple-800">프로그램</th>
+                                    <th class="py-4 px-6 border-b font-semibold text-purple-800">목표 인원</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="hover:bg-purple-50 transition-colors">
+                                    <td class="py-4 px-6 border-b font-medium" rowspan="2">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 flex items-center justify-center bg-purple-600 text-white rounded-full mr-3 font-bold shadow-md">1</div>
+                                            <span>1단계<br>(1-2년차)</span>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-6 border-b">청년 창업농</td>
+                                    <td class="py-4 px-6 border-b">양파 창업농 육성과정</td>
+                                    <td class="py-4 px-6 border-b text-center font-bold text-purple-700">20명</td>
+                                </tr>
+                                <tr class="hover:bg-purple-50 transition-colors">
+                                    <td class="py-4 px-6 border-b">기존 농업인</td>
+                                    <td class="py-4 px-6 border-b">6차산업 전환 교육</td>
+                                    <td class="py-4 px-6 border-b text-center font-bold text-purple-700">50명</td>
+                                </tr>
+                                <tr class="hover:bg-purple-50 transition-colors">
+                                    <td class="py-4 px-6 border-b font-medium" rowspan="2">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 flex items-center justify-center bg-purple-600 text-white rounded-full mr-3 font-bold shadow-md">2</div>
+                                            <span>2단계<br>(3-4년차)</span>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-6 border-b">가공 전문인력</td>
+                                    <td class="py-4 px-6 border-b">양파 가공 마이스터 과정</td>
+                                    <td class="py-4 px-6 border-b text-center font-bold text-purple-700">30명</td>
+                                </tr>
+                                <tr class="hover:bg-purple-50 transition-colors">
+                                    <td class="py-4 px-6 border-b">체험관광 인력</td>
+                                    <td class="py-4 px-6 border-b">양파 체험 지도사 양성</td>
+                                    <td class="py-4 px-6 border-b text-center font-bold text-purple-700">40명</td>
+                                </tr>
+                                <tr class="hover:bg-purple-50 transition-colors">
+                                    <td class="py-4 px-6 border-b font-medium" rowspan="2">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 flex items-center justify-center bg-purple-600 text-white rounded-full mr-3 font-bold shadow-md">3</div>
+                                            <span>3단계<br>(5년차 이후)</span>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-6 border-b">글로벌 전문가</td>
+                                    <td class="py-4 px-6 border-b">양파 수출 전문 과정</td>
+                                    <td class="py-4 px-6 border-b text-center font-bold text-purple-700">20명</td>
+                                </tr>
+                                <tr class="hover:bg-purple-50 transition-colors">
+                                    <td class="py-4 px-6 border-b">창업 멘토단</td>
+                                    <td class="py-4 px-6 border-b">양파 6차산업 멘토 양성</td>
+                                    <td class="py-4 px-6 border-b text-center font-bold text-purple-700">15명</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 섹션 4: 추진 체계 및 로드맵 -->
+        <section class="mb-20 fade-in-section">
+            <div class="flex items-center mb-6">
+                <div class="bg-purple-600 h-10 w-10 rounded-full flex items-center justify-center text-white mr-4 shadow-lg">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800">4. 추진 체계 및 로드맵</h2>
+            </div>
+            
+            <!-- 추진 조직 -->
+            <div class="bg-white rounded-lg shadow-lg p-8 mb-12 hover-lift">
+                <div class="flex flex-wrap items-center mb-6">
+                    <div class="bg-purple-100 w-10 h-10 rounded-full flex items-center justify-center mr-3 text-purple-600 text-xl shadow-md">
+                        <i class="fas fa-sitemap"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-purple-800">4.1 추진 조직</h3>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-200 shadow-md transform transition-all duration-300 hover:shadow-lg hover:bg-gray-100">
+                        <div class="flex items-center justify-center mb-4">
+                            <div class="w-16 h-16 flex items-center justify-center bg-purple-600 text-white rounded-full shadow-lg">
+                                <i class="fas fa-users-cog text-2xl"></i>
+                            </div>
+                        </div>
+                        <h4 class="font-semibold text-gray-800 mb-4 text-center text-lg">창녕 양파밸리 조성위원회</h4>
+                        <p class="text-gray-700 mb-3"><strong class="text-purple-800">구성:</strong> 창녕군수(위원장), 관련 부서장, 민간 전문가, 생산자단체 대표 등</p>
+                        <p class="text-gray-700"><strong class="text-purple-800">역할:</strong> 사업 기본계획 수립, 예산 확보, 추진상황 점검, 조정 등</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-200 shadow-md transform transition-all duration-300 hover:shadow-lg hover:bg-gray-100">
+                        <div class="flex items-center justify-center mb-4">
+                            <div class="w-16 h-16 flex items-center justify-center bg-purple-500 text-white rounded-full shadow-lg">
+                                <i class="fas fa-building text-2xl"></i>
+                            </div>
+                        </div>
+                        <h4 class="font-semibold text-gray-800 mb-4 text-center text-lg">창녕 양파밸리 운영센터</h4>
+                        <p class="text-gray-700 mb-3"><strong class="text-purple-800">구성:</strong> 센터장, 사업팀(생산·가공·유통·체험), 지원팀(교육·홍보·연구)</p>
+                        <p class="text-gray-700"><strong class="text-purple-800">역할:</strong> 세부사업 실행, 경영체 발굴·육성, 네트워킹, 마케팅 등</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-200 shadow-md transform transition-all duration-300 hover:shadow-lg hover:bg-gray-100">
+                        <div class="flex items-center justify-center mb-4">
+                            <div class="w-16 h-16 flex items-center justify-center bg-purple-400 text-white rounded-full shadow-lg">
+                                <i class="fas fa-network-wired text-2xl"></i>
+                            </div>
+                        </div>
+                        <h4 class="font-semibold text-gray-800 mb-4 text-center text-lg">양파 6차산업 네트워크</h4>
+                        <p class="text-gray-700 mb-3"><strong class="text-purple-800">구성:</strong> 양파 생산농가, 가공업체, 체험농장, 관광업체, 유통업체 등</p>
+                        <p class="text-gray-700"><strong class="text-purple-800">역할:</strong> 현장 참여, 협력사업 발굴, 정보 공유, 공동 마케팅 등</p>
+                    </div>
+                </div>
+                
+                <!-- 추진 체계 다이어그램 -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h4 class="font-semibold text-center text-gray-800 mb-6 flex items-center justify-center">
+                        <i class="fas fa-project-diagram mr-2 text-purple-600"></i>
+                        추진 체계 다이어그램
+                    </h4>
+                    <div class="flex justify-center">
+                        <div class="w-full max-w-3xl">
+                            <div class="flex flex-col items-center">
+                                <!-- 최상위 -->
+                                <div class="bg-purple-600 text-white p-4 rounded-lg w-80 text-center font-semibold mb-4 shadow-lg transform transition-all duration-300 hover:shadow-xl hover:scale-105">
+                                    <i class="fas fa-crown mr-2"></i>
+                                    창녕 양파밸리 조성위원회
+                                </div>
+                                <!-- 화살표 -->
+                                <div class="h-10 border-l-2 border-gray-400 relative">
+                                    <div class="absolute -bottom-2 -left-2 text-gray-400 animate-bounce">
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                </div>
+                                <!-- 중간 -->
+                                <div class="bg-purple-500 text-white p-4 rounded-lg w-80 text-center font-semibold mb-4 shadow-lg transform transition-all duration-300 hover:shadow-xl hover:scale-105">
+                                    <i class="fas fa-building mr-2"></i>
+                                    창녕 양파밸리 운영센터
+                                </div>
+                                <!-- 화살표 -->
+                                <div class="h-10 border-l-2 border-gray-400 relative">
+                                    <div class="absolute -bottom-2 -left-2 text-gray-400 animate-bounce">
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                </div>
+                                <!-- 하위 그룹 -->
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
+                                    <div class="bg-green-500 text-white p-3 rounded-lg text-center font-medium shadow-lg transform transition-all duration-300 hover:shadow-xl hover:scale-105">
+                                        <i class="fas fa-seedling mr-2"></i>
+                                        생산 부문<br>(농가, 생산자단체)
+                                    </div>
+                                    <div class="bg-purple-500 text-white p-3 rounded-lg text-center font-medium shadow-lg transform transition-all duration-300 hover:shadow-xl hover:scale-105">
+                                        <i class="fas fa-industry mr-2"></i>
+                                        가공 부문<br>(가공기업, 마을기업)
+                                    </div>
+                                    <div class="bg-yellow-500 text-white p-3 rounded-lg text-center font-medium shadow-lg transform transition-all duration-300 hover:shadow-xl hover:scale-105">
+                                        <i class="fas fa-concierge-bell mr-2"></i>
+                                        서비스 부문<br>(체험, 관광, 유통)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 단계별 추진 계획 -->
+            <div class="bg-white rounded-lg shadow-lg p-8 mb-12 hover-lift bg-gradient-pattern">
+                <div class="flex flex-wrap items-center mb-6">
+                    <div class="bg-purple-100 w-10 h-10 rounded-full flex items-center justify-center mr-3 text-purple-600 text-xl shadow-md">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-purple-800">4.2 단계별 추진 계획</h3>
+                </div>
+                
+                <div class="flex flex-col md:flex-row gap-6 mb-10">
+                    <!-- 1단계 -->
+                    <div class="bg-purple-50 p-6 rounded-lg md:w-1/3 shadow-lg transform transition-all duration-300 hover:shadow-xl hover:bg-purple-100">
+                        <div class="bg-purple-600 text-white py-2 px-4 rounded-t-lg -mt-6 -mx-6 mb-6 flex items-center">
+                            <div class="w-8 h-8 flex items-center justify-center bg-white text-purple-600 rounded-full mr-3 font-bold shadow-md">
+                                1
+                            </div>
+                            <h4 class="font-semibold text-lg">1단계: 기반 조성기 (1-2년차)</h4>
+                        </div>
+                        <ul class="space-y-3 custom-bullet-list">
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>창녕 양파밸리 기본계획 수립 및 부지 확보</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>양파 가공 지원센터 구축 및 시범 운영</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>양파 6차산업 아카데미 개설 및 인력 양성</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>양파 6차산업 경영체 발굴 및 육성(5개 이상)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>양파 통합 브랜드 개발 및 기본 마케팅 전략 수립</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- 2단계 -->
+                    <div class="bg-purple-50 p-6 rounded-lg md:w-1/3 shadow-lg transform transition-all duration-300 hover:shadow-xl hover:bg-purple-100">
+                        <div class="bg-purple-600 text-white py-2 px-4 rounded-t-lg -mt-6 -mx-6 mb-6 flex items-center">
+                            <div class="w-8 h-8 flex items-center justify-center bg-white text-purple-600 rounded-full mr-3 font-bold shadow-md">
+                                2
+                            </div>
+                            <h4 class="font-semibold text-lg">2단계: 성장 도약기 (3-4년차)</h4>
+                        </div>
+                        <ul class="space-y-3 custom-bullet-list">
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>양파밸리 핵심 시설 구축 및 운영</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>양파 가공제품 다양화 및 상품 경쟁력 강화(10종 이상)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>양파 체험관광 프로그램 정착 및 활성화</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>양파 6차산업 경영체 확대(10개 이상)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>온·오프라인 유통망 확대 및 마케팅 강화</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- 3단계 -->
+                    <div class="bg-purple-50 p-6 rounded-lg md:w-1/3 shadow-lg transform transition-all duration-300 hover:shadow-xl hover:bg-purple-100">
+                        <div class="bg-purple-600 text-white py-2 px-4 rounded-t-lg -mt-6 -mx-6 mb-6 flex items-center">
+                            <div class="w-8 h-8 flex items-center justify-center bg-white text-purple-600 rounded-full mr-3 font-bold shadow-md">
+                                3
+                            </div>
+                            <h4 class="font-semibold text-lg">3단계: 확산 정착기 (5년차 이후)</h4>
+                        </div>
+                        <ul class="space-y-3 custom-bullet-list">
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>양파밸리 전체 시설 완공 및 활성화</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>양파 6차산업 클러스터 형성 및 네트워크 강화</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>양파 가공제품 수출 확대 및 글로벌 브랜드화</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>양파 6차산업 경영체 고도화 및 자립 운영(15개 이상)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>지역 관광자원과 연계한 통합 관광 상품화</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- 로드맵 -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h4 class="font-semibold text-center text-gray-800 mb-6 flex items-center justify-center">
+                        <i class="fas fa-road mr-2 text-purple-600"></i>
+                        5개년 로드맵
+                    </h4>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white border border-gray-200 shadow-md rounded-lg overflow-hidden">
+                            <thead class="bg-purple-100">
+                                <tr>
+                                    <th class="py-3 px-4 border-b font-semibold text-purple-800">구분</th>
+                                    <th class="py-3 px-4 border-b font-semibold text-purple-800">1년차</th>
+                                    <th class="py-3 px-4 border-b font-semibold text-purple-800">2년차</th>
+                                    <th class="py-3 px-4 border-b font-semibold text-purple-800">3년차</th>
+                                    <th class="py-3 px-4 border-b font-semibold text-purple-800">4년차</th>
+                                    <th class="py-3 px-4 border-b font-semibold text-purple-800">5년차</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="hover:bg-purple-50 transition-colors">
+                                    <td class="py-3 px-4 border-b font-medium">양파밸리 조성</td>
+                                    <td class="py-2 px-3 border-b text-center bg-green-50">계획 수립<br>부지 확보</td>
+                                    <td class="py-2 px-3 border-b text-center bg-green-50">기반 공사<br>가공센터 구축</td>
+                                    <td class="py-2 px-3 border-b text-center bg-yellow-50">핵심 시설 구축<br>시범 운영</td>
+                                    <td class="py-2 px-3 border-b text-center bg-yellow-50">전체 시설 구축<br>본격 운영</td>
+                                    <td class="py-2 px-3 border-b text-center bg-red-50">완공 및<br>활성화</td>
+                                </tr>
+                                <tr class="hover:bg-purple-50 transition-colors">
+                                    <td class="py-3 px-4 border-b font-medium">가공 활성화</td>
+                                    <td class="py-2 px-3 border-b text-center bg-green-50">기초 제품 개발<br>소규모 설비</td>
+                                    <td class="py-2 px-3 border-b text-center bg-green-50">제품 확대<br>품질관리</td>
+                                    <td class="py-2 px-3 border-b text-center bg-yellow-50">가공센터 구축<br>제품 다양화</td>
+                                    <td class="py-2 px-3 border-b text-center bg-yellow-50">고부가가치<br>제품 개발</td>
+                                    <td class="py-2 px-3 border-b text-center bg-red-50">수출 확대<br>글로벌화</td>
+                                </tr>
+                                <tr class="hover:bg-purple-50 transition-colors">
+                                    <td class="py-3 px-4 border-b font-medium">체험관광</td>
+                                    <td class="py-2 px-3 border-b text-center bg-green-50">프로그램 개발<br>시범 운영</td>
+                                    <td class="py-2 px-3 border-b text-center bg-green-50">프로그램 확대<br>축제 개편</td>
+                                    <td class="py-2 px-3 border-b text-center bg-yellow-50">체험 인프라<br>구축</td>
+                                    <td class="py-2 px-3 border-b text-center bg-yellow-50">연계 상품<br>개발</td>
+                                    <td class="py-2 px-3 border-b text-center bg-red-50">통합 관광<br>상품화</td>
+                                </tr>
+                                <tr class="hover:bg-purple-50 transition-colors">
+                                    <td class="py-3 px-4 border-b font-medium">인력 양성</td>
+                                    <td class="py-2 px-3 border-b text-center bg-green-50">아카데미 개설<br>기초 교육</td>
+                                    <td class="py-2 px-3 border-b text-center bg-green-50">경영체 발굴<br>창업 지원</td>
+                                    <td class="py-2 px-3 border-b text-center bg-yellow-50">전문 과정<br>운영</td>
+                                    <td class="py-2 px-3 border-b text-center bg-yellow-50">청년 창업농<br>지원 확대</td>
+                                    <td class="py-2 px-3 border-b text-center bg-red-50">네트워크<br>고도화</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 소요 예산 및 재원 조달 -->
+            <div class="bg-white rounded-lg shadow-lg p-8 hover-lift">
+                <div class="flex flex-wrap items-center mb-6">
+                    <div class="bg-purple-100 w-10 h-10 rounded-full flex items-center justify-center mr-3 text-purple-600 text-xl shadow-md">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-purple-800">4.3 소요 예산 및 재원 조달</h3>
+                </div>
+                
+                <div class="flex flex-col md:flex-row gap-8 mb-8">
+                    <div class="md:w-1/2">
+                        <div class="mb-8">
+                            <h4 class="font-semibold text-gray-800 mb-4 flex items-center">
+                                <i class="fas fa-money-bill-wave mr-2 text-purple-600"></i>
+                                총 소요 예산
+                            </h4>
+                            <div class="bg-purple-50 p-6 rounded-lg text-center shadow-md">
+                                <div class="number-highlight">200억원</div>
+                                <p class="text-gray-700 font-medium">(국비, 지방비, 민간자본 포함)</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-semibold text-gray-800 mb-4 flex items-center">
+                                <i class="fas fa-hand-holding-usd mr-2 text-purple-600"></i>
+                                재원 조달 방안
+                            </h4>
+                            <ul class="space-y-4">
+                                <li class="flex items-start p-3 bg-green-50 rounded-lg shadow-md transform transition-all duration-300 hover:shadow-lg hover:scale-105">
+                                    <div class="mr-3 w-8 h-8 flex-shrink-0 bg-green-500 text-white rounded-full flex items-center justify-center shadow-md">
+                                        <i class="fas fa-university"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-green-800 mb-1">국비</p>
+                                        <p class="text-gray-700">농촌융복합산업 지원사업, 농촌 신활력 플러스 사업 등 연계</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start p-3 bg-blue-50 rounded-lg shadow-md transform transition-all duration-300 hover:shadow-lg hover:scale-105">
+                                    <div class="mr-3 w-8 h-8 flex-shrink-0 bg-blue-500 text-white rounded-full flex items-center justify-center shadow-md">
+                                        <i class="fas fa-city"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-blue-800 mb-1">지방비</p>
+                                        <p class="text-gray-700">창녕군 농업·농촌 관련 예산 확보</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start p-3 bg-yellow-50 rounded-lg shadow-md transform transition-all duration-300 hover:shadow-lg hover:scale-105">
+                                    <div class="mr-3 w-8 h-8 flex-shrink-0 bg-yellow-500 text-white rounded-full flex items-center justify-center shadow-md">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-yellow-800 mb-1">민간자본</p>
+                                        <p class="text-gray-700">주민 출자, 크라우드 펀딩, 농식품 모태펀드 등 활용</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2">
+                        <h4 class="font-semibold text-gray-800 mb-4 flex items-center">
+                            <i class="fas fa-chart-bar mr-2 text-purple-600"></i>
+                            단계별 투자 계획
+                        </h4>
+                        <div class="bg-white p-6 rounded-lg shadow-md graph-container">
+                            <canvas id="budget-chart" height="200"></canvas>
+                        </div>
+                        <div class="mt-6 p-4 bg-gray-50 rounded-lg shadow-md">
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <div class="w-6 h-6 rounded-full bg-purple-600 mr-3 mt-0.5 flex-shrink-0"></div>
+                                    <div>
+                                        <p class="font-semibold">1단계(1-2년차): 50억원</p>
+                                        <p class="text-sm text-gray-600">기반 조성, 핵심 시설 구축</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-6 h-6 rounded-full bg-purple-500 mr-3 mt-0.5 flex-shrink-0"></div>
+                                    <div>
+                                        <p class="font-semibold">2단계(3-4년차): 100억원</p>
+                                        <p class="text-sm text-gray-600">주요 시설 구축, 프로그램 운영</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-6 h-6 rounded-full bg-purple-400 mr-3 mt-0.5 flex-shrink-0"></div>
+                                    <div>
+                                        <p class="font-semibold">3단계(5년차 이후): 50억원</p>
+                                        <p class="text-sm text-gray-600">시설 확장, 고도화 사업 등</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>    
+
+        <!-- 다음 페이지 링크 -->
+        <div class="flex justify-between items-center bg-white p-6 rounded-lg shadow-md">
+            <a href="current-situation.html" class="flex items-center text-purple-600 hover:text-purple-800 group">
+                <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mr-3 group-hover:bg-purple-200 transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </div>
+                <span>현황 및 문제점으로 돌아가기</span>
+            </a>
+            <a href="expected-effects.html" class="flex items-center text-purple-600 hover:text-purple-800 group">
+                <span>기대효과 보기</span>
+                <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center ml-3 group-hover:bg-purple-200 transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </div>
+            </a>
+        </div>
+    </main>
+
+    <!-- 푸터 -->
+    <footer class="bg-gray-800 text-white py-10 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-8 md:mb-0">
+                    <div class="flex items-center mb-4">
+                        <img src="changnyeong_onion_icon.svg" alt="창녕 양파 로고" class="h-12 mr-3">
+                        <h3 class="text-2xl font-bold">창녕 양파밸리</h3>
+                    </div>
+                    <p class="text-gray-400 max-w-md">생산에서 체험까지, 농업과 관광이 융합된 6차산업 선도 지역으로 창녕군의 지속가능한 발전을 이끌어갑니다.</p>
+                    <div class="mt-4 flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-8 sm:grid-cols-3">
+                    <div>
+                        <h4 class="text-sm font-semibold uppercase tracking-wider mb-4 border-b border-gray-700 pb-2">프로젝트</h4>
+                        <ul class="space-y-2">
+                            <li><a href="current-situation.html" class="text-gray-400 hover:text-white transition-colors flex items-center"><i class="fas fa-angle-right mr-2 text-xs"></i>현황 및 문제점</a></li>
+                            <li><a href="improvement-plan.html" class="text-gray-400 hover:text-white transition-colors flex items-center"><i class="fas fa-angle-right mr-2 text-xs"></i>개선방안</a></li>
+                            <li><a href="expected-effects.html" class="text-gray-400 hover:text-white transition-colors flex items-center"><i class="fas fa-angle-right mr-2 text-xs"></i>기대효과</a></li>
+                            <li><a href="changnyeong-trend-visualization.html" class="text-gray-400 hover:text-white transition-colors flex items-center"><i class="fas fa-angle-right mr-2 text-xs"></i>트렌드 분석</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-semibold uppercase tracking-wider mb-4 border-b border-gray-700 pb-2">관련 정보</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors flex items-center"><i class="fas fa-angle-right mr-2 text-xs"></i>창녕군청</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors flex items-center"><i class="fas fa-angle-right mr-2 text-xs"></i>농촌융복합산업</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors flex items-center"><i class="fas fa-angle-right mr-2 text-xs"></i>양파 재배 정보</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-semibold uppercase tracking-wider mb-4 border-b border-gray-700 pb-2">연락처</h4>
+                        <ul class="space-y-2">
+                            <li class="text-gray-400 flex items-start">
+                                <i class="fas fa-map-marker-alt mr-2 mt-1 text-purple-400"></i>
+                                <span>경상남도 창녕군 창녕읍 군청길 1</span>
+                            </li>
+                            <li class="text-gray-400 flex items-center">
+                                <i class="fas fa-phone-alt mr-2 text-purple-400"></i>
+                                <span>Tel: 055-530-1023</span>
+                            </li>
+                            <li class="text-gray-400 flex items-center">
+                                <i class="fas fa-envelope mr-2 text-purple-400"></i>
+                                <span>Email: info@example.com</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-10 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm">&copy; 2025 창녕 양파밸리 프로젝트. All rights reserved.</p>
+                <div class="mt-4 md:mt-0">
+                    <a href="#" class="text-sm text-gray-400 hover:text-white mr-4 transition-colors">개인정보처리방침</a>
+                    <a href="#" class="text-sm text-gray-400 hover:text-white transition-colors">이용약관</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 페이지 로드 시 fade-in 애니메이션
+            setTimeout(function() {
+                document.querySelectorAll('.fade-in-section').forEach(section => {
+                    section.classList.add('is-visible');
+                });
+            }, 300);
+
+            // 스크롤 시 fade-in 애니메이션
+            function checkVisibility() {
+                document.querySelectorAll('.fade-in-section').forEach(section => {
+                    const sectionTop = section.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    if (sectionTop < windowHeight * 0.85) {
+                        section.classList.add('is-visible');
+                    }
+                });
+            }
+            window.addEventListener('scroll', checkVisibility);
+            checkVisibility();
+
+            // 6차산업 모델 차트
+            const sixthIndustryChart = document.getElementById('sixth-industry-chart');
+            if (sixthIndustryChart) {
+                new Chart(sixthIndustryChart, {
+                    type: 'radar',
+                    data: {
+                        labels: ['생산', '가공', '유통', '체험', '관광', '마케팅'],
+                        datasets: [
+                            {
+                                label: '현재',
+                                data: [80, 30, 40, 20, 30, 20],
+                                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                borderColor: 'rgb(255, 99, 132)',
+                                pointBackgroundColor: 'rgb(255, 99, 132)',
+                                pointBorderColor: '#fff',
+                                pointHoverBackgroundColor: '#fff',
+                                pointHoverBorderColor: 'rgb(255, 99, 132)',
+                                fill: true
+                            },
+                            {
+                                label: '5년 후 목표',
+                                data: [90, 80, 85, 90, 80, 85],
+                                backgroundColor: 'rgba(124, 58, 237, 0.2)',
+                                borderColor: 'rgb(124, 58, 237)',
+                                pointBackgroundColor: 'rgb(124, 58, 237)',
+                                pointBorderColor: '#fff',
+                                pointHoverBackgroundColor: '#fff',
+                                pointHoverBorderColor: 'rgb(124, 58, 237)',
+                                fill: true
+                            }
+                        ]
+                    },
+                    options: {
+                        elements: {
+                            line: {
+                                borderWidth: 3
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    font: {
+                                        size: 12
+                                    },
+                                    padding: 20
+                                }
+                            }
+                        },
+                        scales: {
+                            r: {
+                                angleLines: {
+                                    display: true,
+                                    color: 'rgba(0, 0, 0, 0.1)'
+                                },
+                                pointLabels: {
+                                    font: {
+                                        size: 14,
+                                        weight: 'bold'
+                                    }
+                                },
+                                ticks: {
+                                    backdropColor: 'transparent',
+                                    color: 'rgba(0, 0, 0, 0.5)'
+                                },
+                                grid: {
+                                    circular: true,
+                                    color: 'rgba(0, 0, 0, 0.05)'
+                                },
+                                suggestedMin: 0,
+                                suggestedMax: 100
+                            }
+                        }
+                    }
+                });
+            }
+            
+            // 예산 차트
+            const budgetChart = document.getElementById('budget-chart');
+            if (budgetChart) {
+                new Chart(budgetChart, {
+                    type: 'bar',
+                    data: {
+                        labels: ['1단계(1-2년차)', '2단계(3-4년차)', '3단계(5년차 이후)'],
+                        datasets: [{
+                            label: '투자 금액(억원)',
+                            data: [50, 100, 50],
+                            backgroundColor: [
+                                'rgba(124, 58, 237, 0.8)',
+                                'rgba(124, 58, 237, 0.9)',
+                                'rgba(124, 58, 237, 0.7)'
+                            ],
+                            borderWidth: 0,
+                            borderRadius: 6,
+                            hoverOffset: 4
+                        }]
+                    },
+                    options: {
+                        animation: {
+                            duration: 2000,
+                            easing: 'easeOutQuart'
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                backgroundColor: 'rgba(124, 58, 237, 0.8)',
+                                titleFont: {
+                                    size: 14,
+                                    weight: 'bold'
+                                },
+                                bodyFont: {
+                                    size: 14
+                                },
+                                padding: 12,
+                                cornerRadius: 6
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: {
+                                    color: 'rgba(0, 0, 0, 0.05)',
+                                    drawBorder: false
+                                },
+                                ticks: {
+                                    font: {
+                                        size: 12
+                                    },
+                                    padding: 10
+                                },
+                                title: {
+                                    display: true,
+                                    text: '금액(억원)',
+                                    font: {
+                                        size: 14,
+                                        weight: 'bold'
+                                    },
+                                    padding: {top: 10, bottom: 10}
+                                }
+                            },
+                            x: {
+                                grid: {
+                                    display: false
+                                },
+                                ticks: {
+                                    font: {
+                                        size: 12
+                                    },
+                                    padding: 10
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+            
+            // 모바일 메뉴 토글
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
+
+    <script src="chart-script.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+}

@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>현황 및 문제점 - 창녕 농촌융복합산업(6차산업) 활성화 프로젝트</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="icons.js"></script>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- 스크롤 프로그레스 바 -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+    
+    <!-- 헤더 -->
+    <header class="bg-purple-800 text-white shadow-md">
+        <div class="container mx-auto p-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="changnyeong_onion_icon.svg" alt="창녕 양파 로고" class="h-10 mr-3">
+                <h1 class="text-xl md:text-2xl font-bold">창녕 양파밸리</h1>
+            </div>
+            <nav class="hidden md:flex space-x-6">
+                <a href="index.html" class="hover:text-purple-200">홈</a>
+                <a href="current-situation.html" class="hover:text-purple-200 font-medium">현황 및 문제점</a>
+                <a href="improvement-plan.html" class="hover:text-purple-200">개선방안</a>
+                <a href="expected-effects.html" class="hover:text-purple-200">기대효과</a>
+                <a href="changnyeong-trend-visualization.html" class="hover:text-purple-200">트렌드 분석</a>
+            </nav>
+            <button class="md:hidden focus:outline-none" id="menu-toggle">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- 모바일 메뉴 -->
+        <div class="md:hidden hidden bg-purple-700 pb-3 pt-1" id="mobile-menu">
+            <nav class="container mx-auto px-4 flex flex-col space-y-2">
+                <a href="index.html" class="hover:text-purple-200 py-2">홈</a>
+                <a href="current-situation.html" class="hover:text-purple-200 py-2 font-medium">현황 및 문제점</a>
+                <a href="improvement-plan.html" class="hover:text-purple-200 py-2">개선방안</a>
+                <a href="expected-effects.html" class="hover:text-purple-200 py-2">기대효과</a>
+                <a href="changnyeong-trend-visualization.html" class="hover:text-purple-200 py-2">트렌드 분석</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 페이지 헤더 -->
+    <div class="bg-purple-700 text-white py-12">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl md:text-4xl font-bold mb-4">현황 및 문제점</h1>
+            <p class="text-lg md:text-xl max-w-3xl">창녕군 양파 산업의 현재 상황과 직면한 문제점을 분석하고 이해합니다.</p>
+        </div>
+    </div>
+
+    <!-- 브레드크럼 -->
+    <div class="bg-gray-100 py-2">
+        <div class="container mx-auto px-4">
+            <nav class="text-sm">
+                <ol class="list-reset flex">
+                    <li><a href="index.html" class="text-purple-600 hover:text-purple-800">홈</a></li>
+                    <li><span class="mx-2">/</span></li>
+                    <li class="text-gray-700">현황 및 문제점</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <!-- 메인 콘텐츠 -->
+    <main class="container mx-auto px-4 py-12">
+        <!-- 섹션 1: 창녕군 양파 산업 현황 -->
+        <section class="mb-16 fade-in">
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-gray-800">1. 창녕군 농업 및 양파 산업 현황</h2>
+            
+            <!-- 양파 시배지 소개 섹션 -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h3 class="text-xl font-bold mb-4 text-purple-800">1.1 창녕군 양파 재배의 역사적 의미와 현황</h3>
+                
+                <div class="flex flex-col md:flex-row gap-8">
+                    <div class="md:w-2/3">
+                        <p class="mb-4 text-gray-700">
+                            경상남도 창녕군은 한국 양파의 시배지로서 역사적 의미를 지닌 지역입니다. 대지면 석리에 위치한 양파 시배지는 일제강점기에 우리나라 최초로 양파 재배가 시작된 장소로, 한국 양파 산업의 요람이라 할 수 있습니다. 이곳은 성씨 집안이 양파를 국내에 처음 재배에 성공해 보급했다는 역사적 의미를 지니고 있으며, 지금도 시배지 조형물이 설치되어 그 의미를 기리고 있습니다.
+                        </p>
+                        <p class="mb-4 text-gray-700">
+                            창녕 양파는 구가 크고 육질이 단단하여 저장성이 높다는 특징을 가지며, 비타민과 무기염류를 함유하여 감기, 불면증, 고혈압 예방 및 치료에 효능이 있는 것으로 알려져 있습니다. 이러한 우수한 품질을 인정받아 '창녕 양파'는 지리적 표시제에 등록되어 있으며, 전국적으로 인정받는 농산물 브랜드로 자리매김하고 있습니다.
+                        </p>
+                        <p class="text-gray-700">
+                            최근에는 맥도날드에서 '창녕 갈릭 버거'로 창녕 햇마늘을 주재료로 사용하는 등 전국적인 브랜드 가치를 인정받고 있습니다. 창녕의 양파 재배 면적은 지속적으로 유지되고 있으며, 경남의 주요 양파 생산지로서 위상을 유지하고 있습니다.
+                        </p>
+                    </div>
+                    <div class="md:w-1/3">
+                        <img src="assets/images/AKR20230509101600052_03_i_P4.jpg" alt="창녕 양파 시배지" class="w-full h-auto rounded-lg shadow">
+                        <p class="mt-2 text-sm text-gray-500 text-center">창녕 양파 시배지 조형물</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 양파 산업 가치와 잠재력 -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-bold mb-4 text-purple-800">1.2 양파 산업의 가치와 잠재력</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div class="bg-purple-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-purple-800 mb-2">건강식품으로서의 가치</h4>
+                        <p class="text-gray-700">양파는 건강식품으로서 국내외적으로 수요가 꾸준히 증가하고 있는 작물입니다. 특히 코로나19 이후 건강에 대한 관심이 높아지면서 면역력 증진에 도움이 되는 양파의 가치가 더욱 부각되고 있습니다.</p>
+                    </div>
+                    <div class="bg-purple-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-purple-800 mb-2">식품산업에서의 중요성</h4>
+                        <p class="text-gray-700">양파는 다양한 요리의 기본 재료로 사용되어 식품산업에서도 중요한 위치를 차지하고 있습니다. 각종 가공식품의 향신료, 풍미 증진제로 활용되고 있습니다.</p>
+                    </div>
+                    <div class="bg-purple-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-purple-800 mb-2">지역 식문화와의 연계</h4>
+                        <p class="text-gray-700">창녕에서는 양파를 활용한 전통 음식 문화도 발달했습니다. 양파즙을 넣어 만든 '양파국수'와 다슬기를 주 재료로 하여 양파즙과 섞은 '양파 고디탕' 등 지역 특색 음식이 있습니다.</p>
+                    </div>
+                </div>
+
+                <p class="text-gray-700 mb-4">
+                    양파는 건강식품으로서 국내외적으로 수요가 꾸준히 증가하고 있는 작물입니다. 특히 코로나19 이후 건강에 대한 관심이 높아지면서 면역력 증진에 도움이 되는 양파의 가치가 더욱 부각되고 있습니다. 또한 양파는 다양한 요리의 기본 재료로 사용되어 식품산업에서도 중요한 위치를 차지하고 있습니다.
+                </p>
+                <p class="text-gray-700">
+                    창녕에서는 양파를 활용한 전통 음식 문화도 발달했습니다. 양파즙을 넣어 만든 '양파국수'는 소화가 잘 되고 밀가루 냄새가 나지 않는 특징이 있으며, '양파 고디탕'은 다슬기를 주 재료로 하여 양파즙과 적절한 비율로 섞은 창녕 지역의 특색 있는 음식입니다. 이러한 음식 문화는 양파를 활용한 6차산업 발전 가능성을 보여주는 좋은 사례입니다.
+                </p>
+            </div>
+        </section>
+
+        <!-- 섹션 2: 농촌 인구 감소 및 고령화 문제 -->
+        <section class="mb-16 fade-in">
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-gray-800">2. 농촌 인구 감소 및 고령화 문제</h2>
+            
+            <!-- 인구 감소 추세 -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h3 class="text-xl font-bold mb-4 text-purple-800">2.1 창녕군 인구 감소 추세</h3>
+                
+                <div class="flex flex-col md:flex-row gap-8">
+                    <div class="md:w-1/2">
+                        <p class="mb-4 text-gray-700">
+                            농촌지역 전반적인 문제와 마찬가지로 창녕군 역시 심각한 인구 감소 문제에 직면해 있습니다. 특히 청년층의 유출이 심각한 상황으로, 과거에는 초·중·고를 모두 창녕에서 졸업한 후 지역 내에서 취업이나 창업을 하는 청년들이 많았으나, 최근에는 인프라가 좋고 거리도 가까운 대구나 창원, 부산 등으로 이탈하는 현상이 심화되고 있습니다.
+                        </p>
+                        <p class="text-gray-700">
+                            인구 감소 문제의 심각성을 인식한 창녕군에서는 최근 '생활인구' 개념을 도입하여 인구 정책의 새로운 지표로 활용하고 있습니다. 2024년 2분기 생활인구 산정 결과, 4월 41만 명, 5월 33만 명, 6월 27만 명으로 1분기 평균 대비 약 13% 증가했으나, 이는 일시적 방문객을 포함한 수치로, 정주인구는 지속적으로 감소 추세에 있습니다.
+                        </p>
+                    </div>
+                    <div class="md:w-1/2">
+                        <div class="bg-gray-100 p-4 rounded-lg">
+                            <h4 class="font-semibold text-gray-800 mb-3">창녕군 인구 추이 (2015-2024)</h4>
+                            <canvas id="population-trend-chart" height="100"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 고령화 문제 -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-bold mb-4 text-purple-800">2.2 고령화로 인한 농업 노동력 부족</h3>
+                
+                <div class="flex flex-col md:flex-row gap-8">
+                    <div class="md:w-1/2">
+                        <p class="mb-4 text-gray-700">
+                            농촌 지역의 고령화는 전국적인 문제이며, 창녕군도 예외가 아닙니다. 한국농촌경제연구원의 '농업전망'에 따르면 농촌의 고령화율은 2022년 기준 25.0%로, 특히 면 지역의 경우 32.4%에 달해 이미 초고령사회에 진입한 상태입니다. 이러한 고령화는 농업 노동력 부족으로 이어져 농촌 경제의 지속가능성을 위협하고 있습니다.
+                        </p>
+                        <p class="text-gray-700">
+                            특히 양파 재배는 정식, 수확 등 노동 집약적 작업이 많아 고령화에 따른 노동력 부족 문제가 더욱 심각하게 나타나고 있습니다. 고령 농업인들은 새로운 기술 습득과 혁신적인 농업 방식 도입에 어려움을 겪고 있어, 농업의 현대화와 고부가가치화에 제약 요인으로 작용하고 있습니다.
+                        </p>
+                    </div>
+                    <div class="md:w-1/4">
+                        <div class="bg-gray-100 p-4 rounded-lg">
+                            <h4 class="font-semibold text-gray-800 mb-3">창녕군 농업인 연령 분포 (2024년)</h4>
+                            <canvas id="age-distribution-chart" height="30"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 섹션 3: 양파 산업의 부가가치 창출 한계 -->
+        <section class="mb-16 fade-in">
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-gray-800">3. 양파 산업의 부가가치 창출 한계</h2>
+            
+            <!-- 1차 생산 위주의 산업구조 -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h3 class="text-xl font-bold mb-4 text-purple-800">3.1 1차 생산 위주의 산업구조</h3>
+                
+                <div class="flex flex-col md:flex-row gap-8">
+                    <div class="md:w-2/3">
+                        <p class="mb-4 text-gray-700">
+                            창녕군의 양파 산업은 주로 1차 생산에 집중되어 있어 부가가치 창출에 한계가 있습니다. 생산된 양파의 대부분이 원물 형태로 출하되어 가격 변동성에 취약하며, 가공을 통한 고부가가치 상품화가 미흡한 실정입니다. 특히 풍작으로 인한 가격 폭락 시 농가 소득이 크게 감소하는 악순환이 반복되고 있습니다.
+                        </p>
+                        <p class="text-gray-700">
+                            2019년에는 전국 양파 생산량이 통계 작성 이래 역대 최다인 159만 4450톤을 기록하며 가격이 폭락하는 사태가 발생하기도 했습니다. 이처럼 기상 여건에 따른 생산량 변동이 큰 농산물의 특성상, 단순 생산·판매 중심의 구조로는 안정적인 농가 소득 확보가 어려운 상황입니다.
+                        </p>
+                    </div>
+                    <div class="md:w-1/3">
+                        <div class="bg-purple-50 p-4 rounded-lg h-full flex flex-col justify-center">
+                            <div class="text-center mb-4">
+                                <span class="inline-block bg-purple-100 text-purple-800 text-3xl font-bold px-4 py-2 rounded-full">85%</span>
+                            </div>
+                            <h4 class="text-center font-semibold text-purple-800 mb-2">원물 형태 출하 비율</h4>
+                            <p class="text-center text-gray-700">창녕 양파의 약 85%가 가공 없이 원물 형태로 출하되고 있어 부가가치 창출에 한계가 있습니다.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 양파 가격 변동 차트 추가 -->
+                <div class="mt-8 bg-gray-100 p-4 rounded-lg">
+                    <h4 class="font-semibold text-gray-800 mb-3">월별 양파 가격 변동 추이</h4>
+                    <p class="text-sm text-gray-600 mb-4">양파 가격은 계절적 요인과 생산량에 따라 큰 변동성을 보입니다. 아래 그래프는 최근 2년간의 월별 가격 변동을 보여줍니다.</p>
+                    <canvas id="onion-price-chart" height="100"></canvas>
+                    <p class="mt-2 text-sm text-gray-500 text-right">자료: 한국농수산식품유통공사(aT)</p>
+                </div>
+            </div>
+
+            <!-- 가공·유통·관광 연계 부족 -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-bold mb-4 text-purple-800">3.2 가공·유통·관광 연계 부족</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-400">
+                        <h4 class="font-semibold text-red-700 mb-2">가공 연계 부족</h4>
+                        <p class="text-gray-700">양파를 활용한 가공식품 개발이 미흡하고, 소규모 농가 중심의 단순 가공에 그쳐 고부가가치 제품화가 부족합니다.</p>
+                    </div>
+                    <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-400">
+                        <h4 class="font-semibold text-red-700 mb-2">유통 다각화 부족</h4>
+                        <p class="text-gray-700">대형유통업체 중심의 판매 구조로 인해 농가 수취가격이 낮고, 직거래 및 온라인 유통 채널이 활성화되지 못하고 있습니다.</p>
+                    </div>
+                    <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-400">
+                        <h4 class="font-semibold text-red-700 mb-2">관광 연계 부족</h4>
+                        <p class="text-gray-700">우포늪, 부곡온천 등 창녕의 주요 관광지와 양파 산업의 연계가 미흡하여 통합적인 체험관광 상품 개발이 부족합니다.</p>
+                    </div>
+                </div>
+
+                <p class="mb-4 text-gray-700">
+                    창녕 양파는 우수한 품질에도 불구하고 가공, 유통, 관광 등 2·3차 산업과의 연계가 부족하여 그 가치가 충분히 실현되지 못하고 있습니다. 양파를 활용한 가공식품 개발, 체험관광 프로그램, 직거래 유통 등의 노력은 일부 시도되고 있으나, 체계적이고 통합적인 접근이 미흡하여 양파 산업의 지속가능한 발전을 이끌어내지 못하고 있습니다.
+                </p>
+                <p class="text-gray-700">
+                    또한 창녕의 우포늪, 부곡온천 등 풍부한 관광자원과 양파 산업의 연계가 부족하여 시너지 효과를 창출하지 못하고 있습니다. 관광객들이 창녕을 방문했을 때 양파 관련 체험이나 제품 구매를 통합적으로 경험할 수 있는 기회가 제한적입니다.
+                </p>
+            </div>
+        </section>
+
+        <!-- 섹션 4: 농촌융복합산업(6차산업) 발전 미흡 -->
+        <section class="mb-16 fade-in">
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-gray-800">4. 농촌융복합산업(6차산업) 발전 미흡</h2>
+            
+            <!-- 6차산업 기반 취약 -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h3 class="text-xl font-bold mb-4 text-purple-800">4.1 6차산업 기반 취약</h3>
+                
+                <div class="mb-6">
+                    <p class="mb-4 text-gray-700">
+                        농촌융복합산업(6차산업)은 농촌의 새로운 부가가치 창출의 대안으로 부상하고 있으나, 창녕군의 6차산업 기반은 아직 취약한 상황입니다. 전국적으로 농촌융복합산업 인증사업자를 통해 핵심경영체를 육성·지원하는 정책이 시행 중이지만, 창녕군의 6차산업 인증경영체 수와 성장 수준은 아직 주목할 만한 성과를 내지 못하고 있습니다.
+                    </p>
+                    <p class="text-gray-700">
+                        특히 양파를 활용한 6차산업 모델이 뚜렷하게 정립되지 않아, 양파의 생산-가공-서비스가 효과적으로 연계되지 못하고 있습니다. 기존의 6차산업 지원 정책도 개별 경영체에 대한 단편적인 지원에 그쳐, 지역 전체의 양파 산업 생태계를 활성화하는 데는 한계가 있습니다.
+                    </p>
+                </div>
+
+                <div class="bg-purple-50 p-4 rounded-lg">
+                    <h4 class="font-semibold text-purple-800 mb-3">창녕군 6차산업 인증 경영체 현황</h4>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white border border-gray-200">
+                            <thead>
+                                <tr>
+                                    <th class="py-2 px-4 border-b">구분</th>
+                                    <th class="py-2 px-4 border-b">2019년</th>
+                                    <th class="py-2 px-4 border-b">2020년</th>
+                                    <th class="py-2 px-4 border-b">2021년</th>
+                                    <th class="py-2 px-4 border-b">2022년</th>
+                                    <th class="py-2 px-4 border-b">2023년</th>
+                                    <th class="py-2 px-4 border-b">2024년</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="py-2 px-4 border-b">전체 인증 경영체 수</td>
+                                    <td class="py-2 px-4 border-b text-center">5</td>
+                                    <td class="py-2 px-4 border-b text-center">7</td>
+                                    <td class="py-2 px-4 border-b text-center">8</td>
+                                    <td class="py-2 px-4 border-b text-center">10</td>
+                                    <td class="py-2 px-4 border-b text-center">12</td>
+                                    <td class="py-2 px-4 border-b text-center">15</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-4 border-b">양파 관련 경영체 수</td>
+                                    <td class="py-2 px-4 border-b text-center">0</td>
+                                    <td class="py-2 px-4 border-b text-center">1</td>
+                                    <td class="py-2 px-4 border-b text-center">1</td>
+                                    <td class="py-2 px-4 border-b text-center">2</td>
+                                    <td class="py-2 px-4 border-b text-center">3</td>
+                                    <td class="py-2 px-4 border-b text-center">4</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="mt-2 text-sm text-gray-500 text-right">자료: 창녕군 내부자료</p>
+                </div>
+            </div>
+
+            <!-- 농가의 6차산업 역량 부족 -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-bold mb-4 text-purple-800">4.2 농가의 6차산업 역량 부족</h3>
+                
+                <div class="flex flex-col md:flex-row gap-8">
+                    <div class="md:w-2/3">
+                        <p class="mb-4 text-gray-700">
+                            창녕군 농가들은 대부분 1차 생산에 특화되어 있어, 가공·유통·관광·마케팅 등 2·3차 산업 분야의 전문성과 경험이 부족합니다. 또한 고령화된 농업인들은 새로운 비즈니스 모델 도입과 정보기술 활용에 어려움을 겪고 있어, 6차산업으로의 전환이 쉽지 않은 상황입니다.
+                        </p>
+                        <p class="text-gray-700">
+                            청년 농업인의 유입과 정착이 미흡한 상황에서, 농업-농촌의 혁신을 이끌어갈 주체가 부족한 점도 6차산업 발전의 장애 요인으로 작용하고 있습니다. 이에 기존 농업인의 역량 강화와 함께, 청년층과 귀농·귀촌인의 유입을 촉진하여 농촌융복합산업의 새로운 주체를 육성할 필요가 있습니다.
+                        </p>
+                    </div>
+                    <div class="md:w-1/3">
+                        <div class="bg-gray-100 p-4 rounded-lg">
+                            <h4 class="font-semibold text-gray-800 mb-3">농가의 6차산업 역량 부족 요인</h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <span class="inline-block bg-red-500 w-3 h-3 rounded-full mt-1.5 mr-2"></span>
+                                    <span class="text-gray-700">가공·유통·마케팅 분야 전문성 부족</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="inline-block bg-red-500 w-3 h-3 rounded-full mt-1.5 mr-2"></span>
+                                    <span class="text-gray-700">고령화된 농업인의 새로운 기술 적용 어려움</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="inline-block bg-red-500 w-3 h-3 rounded-full mt-1.5 mr-2"></span>
+                                    <span class="text-gray-700">청년 농업인 및 혁신 주체 부족</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="inline-block bg-red-500 w-3 h-3 rounded-full mt-1.5 mr-2"></span>
+                                    <span class="text-gray-700">디지털 기술 및 온라인 마케팅 역량 부족</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="inline-block bg-red-500 w-3 h-3 rounded-full mt-1.5 mr-2"></span>
+                                    <span class="text-gray-700">네트워킹 및 협업 문화 부족</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="inline-block bg-red-500 w-3 h-3 rounded-full mt-1.5 mr-2"></span>
+                                    <span class="text-gray-700">초기 투자비용 부담 및 자금 조달 어려움</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 섹션 5: 종합 문제점 -->
+        <section class="mb-16 fade-in">
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-gray-800">5. 종합 문제점</h2>
+            
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <p class="mb-6 text-gray-700">
+                    이상의 현황을 종합해볼 때, 창녕군 양파 산업은 다음과 같은 문제점에 직면해 있습니다:
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <!-- 문제점 1: 인구 감소 및 고령화 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-lg border-l-4 border-red-500 hover:shadow-xl transition-shadow">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mr-4">
+                                    <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                                    </svg>
+                                </div>
+                                <h4 class="text-lg font-bold text-gray-800">인구 감소 및 고령화</h4>
+                            </div>
+                            <p class="text-gray-600 mb-4">창녕군 인구는 지속적으로 감소하고 있으며, 고령화율은 30%를 넘어 초고령사회에 진입했습니다.</p>
+                            <div class="bg-red-50 p-4 rounded-lg">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-700">인구 감소율</span>
+                                    <span class="text-red-600 font-semibold">-2.5%/년</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2 mb-4">
+                                    <div class="bg-red-600 h-2.5 rounded-full" style="width: 85%"></div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-700">고령화율</span>
+                                    <span class="text-red-600 font-semibold">32.4%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2">
+                                    <div class="bg-red-600 h-2.5 rounded-full" style="width: 65%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 문제점 2: 1차 생산 중심 구조 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-lg border-l-4 border-red-500 hover:shadow-xl transition-shadow">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mr-4">
+                                    <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                                    </svg>
+                                </div>
+                                <h4 class="text-lg font-bold text-gray-800">1차 생산 중심 구조</h4>
+                            </div>
+                            <p class="text-gray-600 mb-4">1차 생산 위주의 산업 구조로 인해 부가가치 창출에 한계가 있습니다.</p>
+                            <div class="bg-red-50 p-4 rounded-lg">
+                                <div class="grid grid-cols-3 gap-2 text-center">
+                                    <div>
+                                        <div class="text-2xl font-bold text-red-600">85%</div>
+                                        <div class="text-sm text-gray-600">원물 출하 비율</div>
+                                    </div>
+                                    <div>
+                                        <div class="text-2xl font-bold text-purple-600">12%</div>
+                                        <div class="text-sm text-gray-600">단순 가공 비율</div>
+                                    </div>
+                                    <div>
+                                        <div class="text-2xl font-bold text-green-600">3%</div>
+                                        <div class="text-sm text-gray-600">고부가가치화 비율</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 문제점 3: 가격 변동성 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-lg border-l-4 border-red-500 hover:shadow-xl transition-shadow">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mr-4">
+                                    <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                                    </svg>
+                                </div>
+                                <h4 class="text-lg font-bold text-gray-800">가격 변동성에 취약</h4>
+                            </div>
+                            <p class="text-gray-600 mb-4">계절적 요인과 생산량에 따라 가격이 크게 변동해 농가 소득이 불안정합니다.</p>
+                            <div class="bg-red-50 p-4 rounded-lg">
+                                <div class="flex items-center mb-2">
+                                    <div class="w-1/2">
+                                        <span class="text-sm text-gray-600">최대 가격 변동폭</span>
+                                    </div>
+                                    <div class="w-1/2">
+                                        <span class="font-bold text-red-600">최대 133%</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-1/2">
+                                        <span class="text-sm text-gray-600">연간 가격 변동 횟수</span>
+                                    </div>
+                                    <div class="w-1/2">
+                                        <span class="font-bold text-red-600">평균 4.2회</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 문제점 4: 연계 부족 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-lg border-l-4 border-red-500 hover:shadow-xl transition-shadow">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mr-4">
+                                    <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                    </svg>
+                                </div>
+                                <h4 class="text-lg font-bold text-gray-800">산업간 연계 부족</h4>
+                            </div>
+                            <p class="text-gray-600 mb-4">양파 생산과 가공, 관광 등 2·3차 산업과의 연계가 부족합니다.</p>
+                            <div class="bg-red-50 p-4 rounded-lg">
+                                <div class="grid grid-cols-1 gap-2">
+                                    <div class="flex items-center">
+                                        <span class="inline-block w-3 h-3 bg-red-500 rounded-full mr-2"></span>
+                                        <span class="text-sm text-gray-600">양파 관련 체험 프로그램: 2개</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <span class="inline-block w-3 h-3 bg-red-500 rounded-full mr-2"></span>
+                                        <span class="text-sm text-gray-600">양파 가공업체: 4개</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <span class="inline-block w-3 h-3 bg-red-500 rounded-full mr-2"></span>
+                                        <span class="text-sm text-gray-600">관광-농업 연계 상품: 미미한 수준</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 추가 문제점들 -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                    <!-- 문제점 5: 관광자원 연계 미흡 -->
+                    <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-500">
+                        <div class="flex items-center">
+                            <span class="text-xl font-bold text-red-500 mr-2">5</span>
+                            <h4 class="font-semibold text-gray-800">특산물과 지역 관광자원 연계 미흡</h4>
+                        </div>
+                    </div>
+                    
+                    <!-- 문제점 6: 청년층 부족 -->
+                    <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-500">
+                        <div class="flex items-center">
+                            <span class="text-xl font-bold text-red-500 mr-2">6</span>
+                            <h4 class="font-semibold text-gray-800">청년층의 유입과 정착 부족</h4>
+                        </div>
+                    </div>
+                    
+                    <!-- 문제점 7: 체계적 접근 부재 -->
+                    <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-500">
+                        <div class="flex items-center">
+                            <span class="text-xl font-bold text-red-500 mr-2">7</span>
+                            <h4 class="font-semibold text-gray-800">6차산업 체계적 접근 부재</h4>
+                        </div>
+                    </div>
+                </div>
+                
+                <p class="text-gray-700 mb-8">
+                    이러한 문제점을 해결하기 위해서는 창녕 양파의 역사성과 우수성을 바탕으로, 생산·가공·서비스가 유기적으로 연계된 농촌융복합산업 모델을 구축하는 것이 필요합니다. 특히 양파를 중심으로 한 6차산업화를 통해 부가가치를 높이고, 일자리를 창출하며, 지역경제를 활성화하는 통합적 접근이 요구됩니다.
+                </p>
+                
+                <!-- 지역별 비교 섹션 -->
+                <h3 class="text-xl font-bold mb-4 text-purple-800">5.1 국내 주요 양파 생산지역 비교</h3>
+                
+                <div class="overflow-x-auto mb-6">
+                    <table class="min-w-full bg-white border border-gray-200">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="py-3 px-4 border-b text-left">지역</th>
+                                <th class="py-3 px-4 border-b text-right">생산량(천톤)</th>
+                                <th class="py-3 px-4 border-b text-right">재배면적(ha)</th>
+                                <th class="py-3 px-4 border-b text-center">브랜드화 정도</th>
+                                <th class="py-3 px-4 border-b text-center">6차산업화 수준</th>
+                                <th class="py-3 px-4 border-b text-right">평균 판매가격(원/kg)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-purple-50">
+                                <td class="py-3 px-4 border-b font-medium text-purple-800">창녕군</td>
+                                <td class="py-3 px-4 border-b text-right">162</td>
+                                <td class="py-3 px-4 border-b text-right">2,450</td>
+                                <td class="py-3 px-4 border-b text-center">
+                                    <div class="flex justify-center">
+                                        <span class="inline-block bg-purple-600 w-4 h-4 rounded-full"></span>
+                                        <span class="inline-block bg-purple-600 w-4 h-4 rounded-full"></span>
+                                        <span class="inline-block bg-purple-600 w-4 h-4 rounded-full"></span>
+                                        <span class="inline-block bg-purple-200 w-4 h-4 rounded-full"></span>
+                                        <span class="inline-block bg-purple-200 w-4 h-4 rounded-full"></span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-4 border-b text-center">
+                                    <div class="flex justify-center">
+                                        <span class="inline-block bg-purple-600 w-4 h-4 rounded-full"></span>
+                                        <span class="inline-block bg-purple-600 w-4 h-4 rounded-full"></span>
+                                        <span class="inline-block bg-purple-200 w-4 h-4 rounded-full"></span>
+                                        <span class="inline-block bg-purple-200 w-4 h-4 rounded-full"></span>
+                                        <span class="inline-block bg-purple-200 w-4 h-4 rounded-full"></span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-4 border-b text-right">1,850</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 px-4 border-b font-medium">무안군</td>
+                                <td class="py-3 px-4 border-b text-right">189</td>
+                                <td class="py-3 px-4 border-b text-right">2,730</td>
+                                <td class="py-3 px-4 border-b text-center">
+                                    <div class="flex justify-center">
+                                        <span class="inline-block bg-gray-600 w-4 h-4 rounded-full"></span>
+                                        <span class="inline-block bg-gray-600 w-4 h-4 rounded-full"></span>
+                                        <span class="inline-block bg-gray-600 w-4 h-4 rounded-full"></span>
+                                        <span class="inline-block bg-gray-600 w-4 h-4 rounded-full"></span>
+                                        <span class="inline-block bg-gray-200 w-4 h-4 rounded-full"></span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-4 border-b text-center">
+                                    <div class="flex justify-center">
+                                        <span class="inline-block bg-gray-600 w-4 h-4 rounded-full"></span>
+                                        <span class="inline-block bg-gray-600 w-4 h-4 rounded-full"></span>
+                                        <span class="inline-block bg-gray-600 w-4 h-4 rounded-full"></span>
+                                        <span class="inline-block bg-gray-200 w-4 h-4 rounded-full"></span>
+                                        <span class="inline-block bg-gray-200 w-4 h-4 rounded-full"></span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-4 border-b text-right">1,780</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 px-4 border-b font-medium">합천군</td>
+                                <td class="py-3 px-4 border-b text-right">103</td>
+                                <td class="py-3 px-4 border-b text-right">1,520</td>
+                                <td class="py-3 px-4 border-b text-center">
+                                    <div class="flex justify-center">
+                                        <span class="inline-block bg-gray-600 w-4 h-4 rounded-full"></span>
+                                        <span class="inline-block bg-gray-600 w-4 h-4 rounded-full"></span>
+                                        <span class="inline-block bg-gray-200 w-4 h-4 rounded-full"></span>
+                                        <span class="inline-block bg-gray-200 w-4 h-4 rounded-full"></span>
+                                        <span class="inline-block bg-gray-200 w-4 h-4 rounded-full"></span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-4 border-b text-center">
+                                    <div class="flex justify-center">
+                                        <span class="inline-block bg-gray-600 w-4 h-4 rounded-full"></span>
+                                        <span class="inline-block bg-gray-200 w-4 h-4 rounded-full"></span>
+                                        <span class="inline-block bg-gray-200 w-4 h-4 rounded-full"></span>
+                                        <span class="inline-block bg-gray-200 w-4 h-4 rounded-full"></span>
+                                        <span class="inline-block bg-gray-200 w-4 h-4 rounded-full"></span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-4 border-b text-right">1,720</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 px-4 border-b font-medium">해남군</td>
+                                <td class="py-3 px-4 border-b text-right">176</td>
+                                <td class="py-3 px-4 border-b text-right">2,650</td>
+                                <td class="py-3 px-4 border-b text-center">
+                                    <div class="flex justify-center">
+                                        <span class="inline-block bg-gray-600 w-4 h-4 rounded-full"></span>
+                                        <span class="inline-block bg-gray-600 w-4 h-4 rounded-full"></span>
+                                        <span class="inline-block bg-gray-600 w-4 h-4 rounded-full"></span>
+                                        <span class="inline-block bg-gray-200 w-4 h-4 rounded-full"></span>
+                                        <span class="inline-block bg-gray-200 w-4 h-4 rounded-full"></span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-4 border-b text-center">
+                                    <div class="flex justify-center">
+                                        <span class="inline-block bg-gray-600 w-4 h-4 rounded-full"></span>
+                                        <span class="inline-block bg-gray-600 w-4 h-4 rounded-full"></span>
+                                        <span class="inline-block bg-gray-600 w-4 h-4 rounded-full"></span>
+                                        <span class="inline-block bg-gray-200 w-4 h-4 rounded-full"></span>
+                                        <span class="inline-block bg-gray-200 w-4 h-4 rounded-full"></span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-4 border-b text-right">1,800</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="text-sm text-gray-500 text-right mb-6">자료: 농림축산식품부, 2024년 기준</p>
+                
+                <!-- 지역별 비교 차트 -->
+                <div class="bg-gray-100 p-4 rounded-lg mb-8">
+                    <h4 class="font-semibold text-gray-800 mb-3">주요 양파 생산지역 비교</h4>
+                    <canvas id="region-comparison-chart" height="100"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- 다음 페이지 링크 -->
+        <div class="flex justify-between items-center">
+            <a href="index.html" class="flex items-center text-purple-600 hover:text-purple-800">
+                <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                메인으로 돌아가기
+            </a>
+            <a href="improvement-plan.html" class="flex items-center text-purple-600 hover:text-purple-800">
+                개선방안 보기
+                <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+        </div>
+    </main>
+
+    <!-- 푸터 -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-xl font-semibold mb-4">창녕 양파밸리</h3>
+                    <p class="text-gray-400">생산에서 체험까지, 농업과 관광이 융합된 6차산업 선도 지역</p>
+                </div>
+                <div class="grid grid-cols-2 gap-8 sm:grid-cols-3">
+                    <div>
+                        <h4 class="text-sm font-semibold uppercase tracking-wider mb-4">프로젝트</h4>
+                        <ul class="space-y-2">
+                            <li><a href="current-situation.html" class="text-gray-400 hover:text-white">현황 및 문제점</a></li>
+                            <li><a href="improvement-plan.html" class="text-gray-400 hover:text-white">개선방안</a></li>
+                            <li><a href="expected-effects.html" class="text-gray-400 hover:text-white">기대효과</a></li>
+                            <li><a href="changnyeong-trend-visualization.html" class="text-gray-400 hover:text-white">트렌드 분석</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-semibold uppercase tracking-wider mb-4">관련 정보</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-white">창녕군청</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white">농촌융복합산업</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white">양파 재배 정보</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-semibold uppercase tracking-wider mb-4">연락처</h4>
+                        <ul class="space-y-2">
+                            <li class="text-gray-400">경상남도 창녕군 창녕읍 군청길 1</li>
+                            <li class="text-gray-400">Tel: 055-530-1023</li>
+                            <li class="text-gray-400">Email: info@example.com</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm">© 2025 창녕 양파밸리 프로젝트. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <span class="sr-only">Facebook</span>
+                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <span class="sr-only">Instagram</span>
+                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <span class="sr-only">YouTube</span>
+                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.504 2.504 0 0 1-1.768 1.768c-1.56.419-7.814.419-7.814.419s-6.255 0-7.814-.419a2.505 2.505 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.255.417-4.814a2.507 2.507 0 0 1 1.768-1.768C5.744 5 11.998 5 11.998 5s6.255 0 7.814.418ZM15.194 12 10 15V9l5.194 3Z" clip-rule="evenodd"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 페이지 특정 차트 생성
+        document.addEventListener('DOMContentLoaded', function() {
+            // 인구 추이 차트
+            const populationTrendChart = document.getElementById('population-trend-chart');
+            if (populationTrendChart) {
+                new Chart(populationTrendChart, {
+                    type: 'line',
+                    data: {
+                        labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'],
+                        datasets: [{
+                            label: '창녕군 인구(명)',
+                            data: [64500, 63800, 63100, 62400, 61700, 61000, 60500, 60000, 59600, 59200],
+                            borderColor: '#6D28D9',
+                            tension: 0.3,
+                            fill: false
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            tooltip: {
+                                mode: 'index',
+                                intersect: false,
+                            },
+                            legend: {
+                                position: 'top',
+                            }
+                        },
+                        scales: {
+                            y: {
+                                min: 55000,
+                                title: {
+                                    display: true,
+                                    text: '인구수 (명)'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // 농업인 연령 분포 차트
+            const ageDistributionChart = document.getElementById('age-distribution-chart');
+            if (ageDistributionChart) {
+                new Chart(ageDistributionChart, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['30세 미만', '30~49세', '50~59세', '60~69세', '70세 이상'],
+                        datasets: [{
+                            data: [3, 12, 25, 35, 25],
+                            backgroundColor: [
+                                '#10B981', // 녹색
+                                '#34D399', // 연한 녹색
+                                '#FBBF24', // 노란색
+                                '#F59E0B', // 주황색
+                                '#EF4444'  // 빨간색
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'right',
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return context.label + ': ' + context.raw + '%';
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // 참고: onion-price-chart 와 region-comparison-chart 의 JavaScript 코드는
+            // script.js 파일에 있는 것으로 가정합니다. 
+            // 만약 이 파일 내에서 모든 차트 JS를 관리한다면, 해당 차트들의 JS 코드도 여기에 추가되어야 합니다.
+        });
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>

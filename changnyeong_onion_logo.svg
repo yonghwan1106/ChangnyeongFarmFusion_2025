@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- 양파 본체 (보라색 계열) -->
+  <ellipse cx="100" cy="110" rx="65" ry="70" fill="#9c59b6" />
+  
+  <!-- 양파 내부 레이어 (밝은 보라) -->
+  <ellipse cx="100" cy="110" rx="50" ry="55" fill="#b980d0" />
+  <ellipse cx="100" cy="110" rx="35" ry="40" fill="#d4a6e3" />
+  
+  <!-- 양파 줄기 부분 -->
+  <path d="M100,40 C110,50 120,40 120,30 L125,15 C125,15 105,10 100,10 C95,10 75,15 75,15 L80,30 C80,40 90,50 100,40" fill="#7d8e44" />
+  
+  <!-- 잎 부분 -->
+  <path d="M70,35 C60,25 50,30 45,20 C55,15 65,20 70,35" fill="#87aa45" />
+  <path d="M130,35 C140,25 150,30 155,20 C145,15 135,20 130,35" fill="#87aa45" />
+  
+  <!-- 창녕 지명 표시 -->
+  <text x="100" y="110" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#ffffff" font-weight="bold">창녕</text>
+  
+  <!-- 원형 테두리 -->
+  <circle cx="100" cy="100" r="95" fill="none" stroke="#5d4037" stroke-width="3" />
+  
+  <!-- 지리적 표시 마크 -->
+  <circle cx="160" cy="40" r="15" fill="#e74c3c" />
+  <text x="160" y="45" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#ffffff" font-weight="bold">地理</text>
+</svg>

@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>창녕군 정책제안 공모전 주제 발굴을 위한 네이버 데이터랩 분석 보고서</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+        
+        :root {
+            --changnyeong-primary: #1e6b41; /* 창녕군 녹색 (우포늪 상징) */
+            --changnyeong-secondary: #8e44ad; /* 창녕 양파 상징 보라색 */
+            --changnyeong-light: #e8f5e9;
+            --changnyeong-dark: #0b3e1f;
+            --changnyeong-accent: #ffc107;
+        }
+        
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            color: #333;
+        }
+        
+        .bg-changnyeong-primary {
+            background-color: var(--changnyeong-primary);
+        }
+        
+        .bg-changnyeong-secondary {
+            background-color: var(--changnyeong-secondary);
+        }
+        
+        .bg-changnyeong-light {
+            background-color: var(--changnyeong-light);
+        }
+        
+        .text-changnyeong-primary {
+            color: var(--changnyeong-primary);
+        }
+        
+        .text-changnyeong-secondary {
+            color: var(--changnyeong-secondary);
+        }
+        
+        .border-changnyeong-primary {
+            border-color: var(--changnyeong-primary);
+        }
+        
+        .shadow-changnyeong {
+            box-shadow: 0 4px 6px rgba(30, 107, 65, 0.1);
+        }
+        
+        /* 그래프 스타일 */
+        .chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+        
+        /* 카드 호버 효과 */
+        .proposal-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .proposal-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(30, 107, 65, 0.2);
+        }
+        
+        .tab-button {
+            transition: all 0.3s ease;
+        }
+        
+        .tab-button.active {
+            background-color: var(--changnyeong-primary);
+            color: white;
+        }
+        
+        .section-divider {
+            height: 4px;
+            background: linear-gradient(90deg, var(--changnyeong-primary), var(--changnyeong-secondary));
+            border-radius: 2px;
+            margin: 2rem 0;
+        }
+        
+        /* 페이지 숫자 스타일 */
+        .page-number {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            padding: 5px 10px;
+            background-color: var(--changnyeong-light);
+            border: 1px solid var(--changnyeong-primary);
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: var(--changnyeong-dark);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- 헤더 -->
+    <header class="bg-purple-800 text-white shadow-md">
+        <div class="container mx-auto p-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="changnyeong_onion_icon.svg" alt="창녕 양파 로고" class="h-10 mr-3">
+                <h1 class="text-xl md:text-2xl font-bold">창녕 양파밸리</h1>
+            </div>
+            <nav class="hidden md:flex space-x-6">
+                <a href="index.html" class="hover:text-purple-200 font-medium">홈</a>
+                <a href="current-situation.html" class="hover:text-purple-200">현황 및 문제점</a>
+                <a href="improvement-plan.html" class="hover:text-purple-200">개선방안</a>
+                <a href="expected-effects.html" class="hover:text-purple-200">기대효과</a>
+                <a href="changnyeong-trend-visualization.html" class="hover:text-purple-200">트렌드 분석</a>
+            </nav>
+            <button class="md:hidden focus:outline-none" id="menu-toggle">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- 모바일 메뉴 -->
+        <div class="md:hidden hidden bg-purple-700 pb-3 pt-1" id="mobile-menu">
+            <nav class="container mx-auto px-4 flex flex-col space-y-2">
+                <a href="index.html" class="hover:text-purple-200 py-2 font-medium">홈</a>
+                <a href="current-situation.html" class="hover:text-purple-200 py-2">현황 및 문제점</a>
+                <a href="improvement-plan.html" class="hover:text-purple-200 py-2">개선방안</a>
+                <a href="expected-effects.html" class="hover:text-purple-200 py-2">기대효과</a>
+                <a href="changnyeong-trend-visualization.html" class="hover:text-purple-200 py-2">트렌드 분석</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-4 py-8 max-w-6xl relative">
+        <!-- 헤더 및 제목 -->
+        <header class="mb-8">
+            <div class="flex items-center mb-4">
+                <div class="w-16 h-16 bg-changnyeong-primary rounded-full flex items-center justify-center mr-4">
+                    <span class="text-white text-2xl font-bold">창녕</span>
+                </div>
+                <div>
+                    <h1 class="text-3xl font-bold text-changnyeong-primary">네이버 데이터랩 검색어 트렌드 분석 보고서</h1>
+                    <p class="text-xl text-gray-600">창녕군 정책제안 공모전 주제 발굴 과정</p>
+                </div>
+            </div>
+            <div class="section-divider"></div>
+        </header>
+
+        <!-- 분석 개요 -->
+        <section class="mb-10">
+            <h2 class="text-2xl font-bold mb-4 text-changnyeong-primary">1. 분석 개요</h2>
+            <div class="bg-white rounded-lg shadow-changnyeong p-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3 text-changnyeong-secondary">1.1 분석 목적</h3>
+                        <p class="text-gray-700">본 보고서는 2025년 창녕군 정책제안 공모전의 효과적인 주제 발굴을 위해 네이버 데이터랩의 검색어 트렌드 데이터를 분석하여 창녕군 관련 주요 관심사와 시기별 변화 패턴을 파악하고, 이를 바탕으로 지역 발전에 기여할 수 있는 정책 제안 주제를 도출하는 것을 목적으로 합니다.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3 text-changnyeong-secondary">1.2 분석 방법론</h3>
+                        <ul class="list-disc pl-5 text-gray-700">
+                            <li><span class="font-medium">데이터 출처:</span> 네이버 데이터랩 검색어 트렌드 API</li>
+                            <li><span class="font-medium">분석 기간:</span> 2023년 5월 1일 ~ 2025년 4월 30일(최근 2년간)</li>
+                            <li><span class="font-medium">시간 단위:</span> 월별 데이터</li>
+                            <li><span class="font-medium">분석 대상 키워드:</span> 창녕군, 우포늪, 양파축제, 일자리, 관광, 복지 등</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 데이터 시각화 섹션 -->
+        <section class="mb-10">
+            <h2 class="text-2xl font-bold mb-4 text-changnyeong-primary">2. 검색어 트렌드 분석</h2>
+            
+            <!-- 탭 버튼 -->
+            <div class="flex flex-wrap gap-2 mb-4">
+                <button class="tab-button active px-4 py-2 rounded-md border border-changnyeong-primary" data-target="core-keywords">창녕군 핵심 키워드</button>
+                <button class="tab-button px-4 py-2 rounded-md border border-changnyeong-primary" data-target="economy-welfare">관광 및 복지</button>
+                <button class="tab-button px-4 py-2 rounded-md border border-changnyeong-primary" data-target="tourism">관광지 및 축제</button>
+                <button class="tab-button px-4 py-2 rounded-md border border-changnyeong-primary" data-target="development">군정 발전 관련</button>
+            </div>
+            
+            <!-- 그래프 컨테이너 -->
+            <div class="bg-white rounded-lg shadow-changnyeong p-6 mb-6">
+                <div id="chart-container" class="chart-container">
+                    <canvas id="trendChart"></canvas>
+                </div>
+            </div>
+            
+            <!-- 분석 결과 설명 -->
+            <div class="chart-explanation bg-changnyeong-light p-6 rounded-lg">
+                <h3 class="text-lg font-semibold mb-3 text-changnyeong-primary">주요 관찰 사항</h3>
+                <div id="core-keywords-explanation" class="explanation-content">
+                    <ul class="list-disc pl-5 text-gray-700">
+                        <li>창녕군 핵심 키워드는 봄(3~5월)과 겨울(12~1월)에 검색량이 증가하는 경향이 있습니다.</li>
+                        <li>2023년 12월(80.87), 2024년 12월(75.76), 2025년 1월(79.53)에 높은 검색량을 기록했습니다.</li>
+                        <li>2025년 3월에 가장 높은 검색량(100.00)을 기록했으며, 이는 공모전 발표 시기와 연관이 있을 수 있습니다.</li>
+                        <li>2024년 6~8월 기간에 가장 낮은 검색량(43.67~46.14)을 기록했습니다.</li>
+                    </ul>
+                </div>
+                <div id="economy-welfare-explanation" class="explanation-content hidden">
+                    <ul class="list-disc pl-5 text-gray-700">
+                        <li>복지 키워드는 2023년 5월에 가장 높은 검색량(100.00)을 기록했습니다.</li>
+                        <li>2024년 봄철(3~6월)에 복지 관련 검색이 증가(78.17~84.99)했습니다.</li>
+                        <li>관광 키워드는 봄(3~5월)과 가을(9~10월)에 검색량이 증가하는 계절적 패턴을 보입니다.</li>
+                        <li>복지 키워드는 전반적으로 하향 추세이나 2025년 3월에 다시 상승(69.22)했습니다.</li>
+                    </ul>
+                </div>
+                <div id="tourism-explanation" class="explanation-content hidden">
+                    <ul class="list-disc pl-5 text-gray-700">
+                        <li>양파축제 키워드가 압도적으로 높은 관심도(47~100 범위)를 보입니다.</li>
+                        <li>양파축제는 4~6월(축제 시즌)에 검색량이 급증하는 뚜렷한 계절성을 보입니다.</li>
+                        <li>우포늪 키워드는 봄(4~5월)과 가을(9~10월) 두 차례 검색량 증가 패턴을 보입니다.</li>
+                        <li>부곡온천과 산토끼 키워드는 낮은 검색량 수준을 유지합니다.</li>
+                    </ul>
+                </div>
+                <div id="development-explanation" class="explanation-content hidden">
+                    <ul class="list-disc pl-5 text-gray-700">
+                        <li>일자리 키워드가 전체 기간 동안 가장 높은 관심도를 유지합니다.</li>
+                        <li>문화 키워드는 2023년 상반기 높은 관심도(89.94)에서 점차 하락 추세를 보입니다.</li>
+                        <li>교통 키워드는 2023년 9월(86.71)과 2025년 1월(70.27)에 높은 관심을 보입니다.</li>
+                        <li>주거 키워드는 분석 키워드 중 가장 낮은 관심도(평균 15~20 범위)를 유지합니다.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 정책제안 주제 도출 -->
+        <section class="mb-10">
+            <h2 class="text-2xl font-bold mb-4 text-changnyeong-primary">3. 정책제안 주제 도출</h2>
+            <p class="mb-6 text-gray-700">데이터 분석 결과를 바탕으로, 창녕군 정책제안 공모전에 적합한 주제를 다음과 같이 제안합니다:</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- 정책 제안 카드 1 -->
+                <div class="proposal-card bg-white rounded-lg shadow-changnyeong overflow-hidden">
+                    <div class="h-2 bg-changnyeong-primary"></div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-2 text-changnyeong-secondary">창녕 청년 일자리 창출 프로젝트</h3>
+                        <p class="text-gray-600 text-sm mb-4"><span class="bg-changnyeong-light px-2 py-1 rounded">지역경제 활성화</span></p>
+                        <p class="text-gray-700">지속적으로 높은 관심도를 보이는 일자리 키워드를 바탕으로 창녕군 청년층을 위한 일자리 창출 방안을 모색합니다. 특히 양파 등 농산물 가공 및 관광 연계 일자리를 개발하여 지역 청년 인구 유출을 방지하고 지역 경제 활성화를 도모합니다.</p>
+                    </div>
+                </div>
+                
+                <!-- 정책 제안 카드 2 -->
+                <div class="proposal-card bg-white rounded-lg shadow-changnyeong overflow-hidden">
+                    <div class="h-2 bg-changnyeong-secondary"></div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-2 text-changnyeong-secondary">양파 축제 확대 및 고도화 방안</h3>
+                        <p class="text-gray-600 text-sm mb-4"><span class="bg-changnyeong-light px-2 py-1 rounded">관광 활성화</span></p>
+                        <p class="text-gray-700">높은 검색 관심도를 보이는 양파축제를 더욱 발전시키기 위한 방안을 모색합니다. 단순한 축제를 넘어 연중 체험 가능한 양파 테마 관광 상품 개발, 온라인 콘텐츠 강화, 타 지역 축제와의 연계 등을 통해 창녕군의 대표 브랜드로 발전시킵니다.</p>
+                    </div>
+                </div>
+                
+                <!-- 정책 제안 카드 3 -->
+                <div class="proposal-card bg-white rounded-lg shadow-changnyeong overflow-hidden">
+                    <div class="h-2 bg-yellow-500"></div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-2 text-changnyeong-secondary">우포늪-양파밸리 연계 관광 프로젝트</h3>
+                        <p class="text-gray-600 text-sm mb-4"><span class="bg-changnyeong-light px-2 py-1 rounded">관광 통합 개발</span></p>
+                        <p class="text-gray-700">우포늪과 양파 테마를 결합한 통합 관광 상품을 개발합니다. 생태관광과 농업체험을 연계하여 관광객 체류 시간을 늘리고, 계절별 관광 상품 다변화를 통해 연중 관광객 유치 방안을 모색합니다.</p>
+                    </div>
+                </div>
+                
+                <!-- 정책 제안 카드 4 -->
+                <div class="proposal-card bg-white rounded-lg shadow-changnyeong overflow-hidden">
+                    <div class="h-2 bg-blue-500"></div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-2 text-changnyeong-secondary">고령자 맞춤형 복지 서비스 개선</h3>
+                        <p class="text-gray-600 text-sm mb-4"><span class="bg-changnyeong-light px-2 py-1 rounded">주민복지 증진</span></p>
+                        <p class="text-gray-700">복지 키워드의 높은 관심도를 반영하여 고령화된 창녕군 인구 구조에 맞는 맞춤형 복지 서비스를 개발합니다. 디지털 격차 해소, 건강 관리, 사회 참여 기회 확대 등 고령자의 삶의 질 향상을 위한 통합적 접근을 모색합니다.</p>
+                    </div>
+                </div>
+                
+                <!-- 정책 제안 카드 5 -->
+                <div class="proposal-card bg-white rounded-lg shadow-changnyeong overflow-hidden">
+                    <div class="h-2 bg-red-500"></div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-2 text-changnyeong-secondary">양파 기반 6차산업 활성화 전략</h3>
+                        <p class="text-gray-600 text-sm mb-4"><span class="bg-changnyeong-light px-2 py-1 rounded">지역경제 활성화</span></p>
+                        <p class="text-gray-700">창녕 양파의 생산(1차)-가공(2차)-서비스(3차)를 연계한 6차산업 모델을 개발합니다. 양파의 부가가치를 높이고 지역 경제를 활성화할 수 있는 통합적 접근 방안을 모색합니다.</p>
+                    </div>
+                </div>
+                
+                <!-- 정책 제안 카드 6 -->
+                <div class="proposal-card bg-white rounded-lg shadow-changnyeong overflow-hidden">
+                    <div class="h-2 bg-purple-500"></div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-2 text-changnyeong-secondary">창녕군 교통 인프라 개선 방안</h3>
+                        <p class="text-gray-600 text-sm mb-4"><span class="bg-changnyeong-light px-2 py-1 rounded">군정 발전</span></p>
+                        <p class="text-gray-700">교통 키워드의 관심도 증가를 반영하여 창녕군 내 교통 인프라 개선 방안을 모색합니다. 관광지 접근성 강화, 대중교통 서비스 개선, 고령자 맞춤형 교통 서비스 등을 통해 주민 편의성을 높이고 관광객 유치를 위한 기반을 조성합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 결론 -->
+        <section class="mb-10">
+            <h2 class="text-2xl font-bold mb-4 text-changnyeong-primary">4. 결론 및 제언</h2>
+            <div class="bg-white rounded-lg shadow-changnyeong p-6">
+                <p class="text-gray-700 mb-4">네이버 데이터랩 분석 결과, 창녕군 관련 검색어 트렌드에서 다음과 같은 주요 시사점이 도출되었습니다:</p>
+                <ul class="list-disc pl-5 text-gray-700 mb-4">
+                    <li>일자리, 양파축제, 우포늪 키워드가 지속적으로 높은 관심도를 보이며, 이는 창녕군의 주요 관심사와 발전 가능성을 보여줍니다.</li>
+                    <li>계절에 따른 검색 패턴이 뚜렷하게 나타나며, 특히 봄철(3~5월)과 가을철(9~10월)에 관광 관련 키워드 검색이 증가합니다.</li>
+                    <li>복지와 일자리 키워드는 연중 일정한 관심도를 유지하며, 이는 지역 주민들의 지속적인 관심사를 반영합니다.</li>
+                </ul>
+                <p class="text-gray-700 mb-4">이러한 분석 결과를 바탕으로, 2025년 창녕군 정책제안 공모전에서는 다음과 같은 주제 영역에 중점을 두는 것이, 효과적인 정책 발굴과 지역 발전에 기여할 수 있을 것입니다:</p>
+                <ol class="list-decimal pl-5 text-gray-700">
+                    <li class="mb-2"><span class="font-bold">지역 경제 활성화:</span> 청년 일자리 창출, 양파 기반 6차산업 육성, 창업 지원 등</li>
+                    <li class="mb-2"><span class="font-bold">관광 활성화:</span> 양파축제 강화, 우포늪 연계 관광, 사계절 관광 상품 개발 등</li>
+                    <li class="mb-2"><span class="font-bold">주민 복지 증진:</span> 고령자 맞춤형 복지, 디지털 격차 해소, 건강 증진 프로그램 등</li>
+                    <li><span class="font-bold">기반 시설 개선:</span> 교통 인프라 개선, 관광지 접근성 강화, 주거 환경 개선 등</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- 푸터 -->
+        <footer class="text-center text-gray-600 text-sm mt-10 border-t border-gray-200 pt-4">
+            <p>본 보고서는 네이버 데이터랩 검색어 트렌드 API를 활용하여 2023년 5월부터 2025년 4월까지의 데이터를 분석한 결과입니다.</p>
+            <p>데이터의 해석은 제한된 키워드와 상대적 지표에 기반하므로, 실제 정책 수립 시에는 추가적인 조사와 검증이 필요할 수 있습니다.</p>
+        </footer>
+        
+        <!-- 페이지 번호 -->
+        <div class="page-number">
+            <span>- 별첨 1 -</span>
+        </div>
+    </div>
+
+    <!-- 자바스크립트 -->
+    <script>
+        // 탭 전환 기능
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const explanationContents = document.querySelectorAll('.explanation-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // 모든 탭 버튼 비활성화
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    // 클릭한 탭 버튼 활성화
+                    this.classList.add('active');
+                    
+                    // 모든 설명 숨기기
+                    explanationContents.forEach(content => content.classList.add('hidden'));
+                    // 선택한 탭에 해당하는 설명 표시
+                    const target = this.getAttribute('data-target');
+                    document.getElementById(`${target}-explanation`).classList.remove('hidden');
+                    
+                    // 그래프 업데이트
+                    updateChart(target);
+                });
+            });
+            
+            // 초기 그래프 로드
+            setupCharts();
+            
+            // 모바일 메뉴 토글
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if(menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+        });
+        
+        // 차트 데이터 및 설정
+        let trendChart;
+        
+        function setupCharts() {
+            const ctx = document.getElementById('trendChart').getContext('2d');
+            
+            // 초기 데이터(창녕군 핵심 키워드)
+            const initialData = {
+                labels: ['23.5', '23.6', '23.7', '23.8', '23.9', '23.10', '23.11', '23.12', '24.1', '24.2', '24.3', '24.4', '24.5', '24.6', '24.7', '24.8', '24.9', '24.10', '24.11', '24.12', '25.1', '25.2', '25.3', '25.4'],
+                datasets: [{
+                    label: '창녕군',
+                    data: [65.42, 57.31, 54.19, 52.76, 68.92, 71.35, 68.54, 80.87, 76.25, 62.43, 68.21, 72.56, 69.33, 43.67, 44.32, 46.14, 65.21, 68.76, 65.32, 75.76, 79.53, 78.64, 100.00, 87.42],
+                    borderColor: '#1e6b41',
+                    backgroundColor: 'rgba(30, 107, 65, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                }]
+            };
+            
+            trendChart = new Chart(ctx, {
+                type: 'line',
+                data: initialData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '창녕군 관련 검색어 트렌드 (2023.5 - 2025.4)',
+                            font: {
+                                size: 16,
+                                weight: 'bold'
+                            }
+                        },
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                        }
+                    },
+                    scales: {
+                        y: {
+                            min: 0,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: '검색량 지수 (최대값=100)',
+                                font: {
+                                    weight: 'bold'
+                                }
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: '연월',
+                                font: {
+                                    weight: 'bold'
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // 탭 변경 시 차트 업데이트
+        function updateChart(target) {
+            // 각 탭에 맞는 데이터셋
+            const datasets = {
+                'core-keywords': [{
+                    label: '창녕군',
+                    data: [65.42, 57.31, 54.19, 52.76, 68.92, 71.35, 68.54, 80.87, 76.25, 62.43, 68.21, 72.56, 69.33, 43.67, 44.32, 46.14, 65.21, 68.76, 65.32, 75.76, 79.53, 78.64, 100.00, 87.42],
+                    borderColor: '#1e6b41',
+                    backgroundColor: 'rgba(30, 107, 65, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                }],
+                'economy-welfare': [{
+                    label: '관광',
+                    data: [67.23, 58.76, 42.31, 41.25, 75.87, 77.54, 59.32, 42.76, 39.87, 58.65, 76.54, 82.32, 85.76, 62.43, 44.21, 49.76, 73.21, 76.54, 61.32, 45.76, 47.65, 65.43, 89.76, 92.45],
+                    borderColor: '#1e6b41',
+                    backgroundColor: 'rgba(30, 107, 65, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                }, {
+                    label: '복지',
+                    data: [100.00, 97.65, 95.32, 92.11, 85.76, 83.21, 78.65, 75.32, 73.54, 76.87, 78.17, 84.65, 84.99, 82.11, 76.54, 73.21, 68.75, 64.32, 62.11, 60.76, 63.21, 67.89, 69.22, 65.43],
+                    borderColor: '#8e44ad',
+                    backgroundColor: 'rgba(142, 68, 173, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                }],
+                'tourism': [{
+                    label: '양파축제',
+                    data: [85.34, 65.23, 54.76, 49.87, 47.65, 48.21, 52.76, 54.21, 55.76, 68.95, 85.43, 100.00, 94.32, 78.65, 56.43, 47.65, 49.87, 51.32, 53.76, 57.89, 60.76, 77.65, 88.54, 92.76],
+                    borderColor: '#8e44ad',
+                    backgroundColor: 'rgba(142, 68, 173, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                }, {
+                    label: '우포늪',
+                    data: [68.43, 65.76, 58.32, 56.76, 73.43, 69.87, 54.32, 48.76, 42.65, 56.43, 78.65, 82.32, 70.65, 53.21, 49.87, 48.65, 71.43, 75.32, 58.76, 45.32, 47.65, 54.32, 76.54, 83.21],
+                    borderColor: '#1e6b41',
+                    backgroundColor: 'rgba(30, 107, 65, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                }, {
+                    label: '부곡온천',
+                    data: [42.54, 38.76, 35.43, 34.21, 38.65, 41.32, 38.76, 35.43, 32.76, 36.54, 42.76, 45.32, 41.87, 38.76, 35.43, 32.76, 39.87, 42.54, 38.76, 35.43, 39.87, 42.54, 45.32, 43.21],
+                    borderColor: '#e74c3c',
+                    backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                }, {
+                    label: '산토끼',
+                    data: [28.76, 25.43, 22.76, 21.43, 23.76, 25.43, 22.76, 20.54, 19.87, 22.54, 25.43, 28.76, 25.43, 22.76, 20.54, 19.87, 23.76, 25.43, 22.76, 20.54, 22.76, 25.43, 28.76, 27.54],
+                    borderColor: '#f39c12',
+                    backgroundColor: 'rgba(243, 156, 18, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                }],
+                'development': [{
+                    label: '일자리',
+                    data: [92.43, 90.76, 93.21, 91.54, 95.32, 96.87, 94.32, 92.76, 91.43, 93.21, 95.76, 94.32, 92.76, 93.21, 95.76, 94.32, 96.87, 97.54, 96.87, 95.32, 94.76, 96.32, 97.54, 95.76],
+                    borderColor: '#e74c3c',
+                    backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                }, {
+                    label: '문화',
+                    data: [89.94, 87.65, 85.43, 82.76, 78.54, 75.32, 73.76, 70.54, 68.76, 71.43, 73.21, 70.54, 68.76, 65.43, 63.87, 62.54, 60.76, 59.32, 57.65, 56.43, 58.76, 61.32, 63.87, 61.32],
+                    borderColor: '#f39c12',
+                    backgroundColor: 'rgba(243, 156, 18, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                }, {
+                    label: '교통',
+                    data: [68.32, 65.76, 63.21, 61.54, 86.71, 83.54, 76.54, 71.32, 68.76, 65.43, 63.87, 62.54, 60.76, 59.32, 58.76, 57.65, 65.43, 63.87, 61.32, 60.76, 70.27, 68.76, 67.54, 65.87],
+                    borderColor: '#3498db',
+                    backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                }, {
+                    label: '주거',
+                    data: [21.43, 20.76, 19.87, 19.32, 18.76, 18.43, 17.65, 17.32, 17.65, 18.32, 18.76, 19.32, 19.87, 20.54, 20.76, 21.32, 21.87, 22.54, 22.76, 23.21, 23.76, 24.32, 24.76, 25.32],
+                    borderColor: '#2ecc71',
+                    backgroundColor: 'rgba(46, 204, 113, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                }]
+            };
+            
+            // 차트 업데이트
+            trendChart.data.datasets = datasets[target];
+            trendChart.update();
+        }
+    </script>
+</body>
+</html>
