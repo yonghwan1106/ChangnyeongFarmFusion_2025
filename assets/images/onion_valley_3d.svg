@@ -1,0 +1,237 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <!-- 배경 하늘 -->
+  <defs>
+    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#7e3af2" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#9f7aea" stop-opacity="0.6" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#skyGradient)" />
+  
+  <!-- 먼 산과 배경 -->
+  <path d="M0,220 Q200,180 400,220 Q600,260 800,220 L800,500 L0,500 Z" fill="#5a67d8" opacity="0.4" />
+  <path d="M0,250 Q200,210 400,250 Q600,290 800,250 L800,500 L0,500 Z" fill="#4c51bf" opacity="0.5" />
+  <path d="M0,280 Q200,240 400,280 Q600,320 800,280 L800,500 L0,500 Z" fill="#434190" opacity="0.6" />
+  
+  <!-- 땅과 초원 -->
+  <path d="M0,300 Q200,280 400,300 Q600,320 800,300 L800,500 L0,500 Z" fill="#68d391" opacity="0.8" />
+  <path d="M0,330 Q200,310 400,330 Q600,350 800,330 L800,500 L0,500 Z" fill="#48bb78" opacity="0.9" />
+  <path d="M0,350 Q200,330 400,350 Q600,370 800,350 L800,500 L0,500 Z" fill="#38a169" opacity="1" />
+  
+  <!-- 양파밸리 메인 건물 (가운데) -->
+  <g transform="translate(400, 320) scale(1)">
+    <!-- 주요 건물 기반 -->
+    <rect x="-80" y="-60" width="160" height="80" fill="#8b5cf6" rx="5" ry="5" />
+    <rect x="-70" y="-80" width="140" height="20" fill="#7c3aed" rx="5" ry="5" />
+    
+    <!-- 지붕 -->
+    <path d="M-80,-60 L0,-90 L80,-60 Z" fill="#6d28d9" />
+    
+    <!-- 문 -->
+    <rect x="-15" y="0" width="30" height="40" fill="#4b5563" />
+    
+    <!-- 창문들 -->
+    <rect x="-60" y="-40" width="20" height="20" fill="#e5e7eb" />
+    <rect x="-30" y="-40" width="20" height="20" fill="#e5e7eb" />
+    <rect x="10" y="-40" width="20" height="20" fill="#e5e7eb" />
+    <rect x="40" y="-40" width="20" height="20" fill="#e5e7eb" />
+    
+    <!-- 양파 모양 돔 -->
+    <ellipse cx="0" cy="-85" rx="30" ry="35" fill="#8b5cf6" />
+    <ellipse cx="0" cy="-95" rx="20" ry="25" fill="#7c3aed" />
+    <path d="M-5,-120 L0,-140 L5,-120 Z" fill="#6d28d9" />
+  </g>
+  
+  <!-- 왼쪽 건물 (가공시설) -->
+  <g transform="translate(250, 340) scale(0.8)">
+    <rect x="-60" y="-50" width="120" height="70" fill="#9f7aea" rx="3" ry="3" />
+    <rect x="-70" y="-55" width="140" height="10" fill="#8b5cf6" />
+    <rect x="-50" y="-35" width="15" height="15" fill="#e5e7eb" />
+    <rect x="-25" y="-35" width="15" height="15" fill="#e5e7eb" />
+    <rect x="10" y="-35" width="15" height="15" fill="#e5e7eb" />
+    <rect x="35" y="-35" width="15" height="15" fill="#e5e7eb" />
+    <rect x="-10" y="0" width="20" height="30" fill="#4b5563" />
+    
+    <!-- 공장 굴뚝 -->
+    <rect x="30" y="-70" width="15" height="35" fill="#8b5cf6" />
+    <path d="M30,-70 L45,-70 L45,-80 L30,-75 Z" fill="#7c3aed" />
+  </g>
+  
+  <!-- 오른쪽 건물 (체험관) -->
+  <g transform="translate(550, 330) scale(0.9)">
+    <rect x="-70" y="-40" width="140" height="60" fill="#a78bfa" rx="4" ry="4" />
+    <path d="M-70,-40 L0,-70 L70,-40 Z" fill="#8b5cf6" />
+    <rect x="-60" y="-25" width="20" height="20" fill="#e5e7eb" />
+    <rect x="-20" y="-25" width="20" height="20" fill="#e5e7eb" />
+    <rect x="20" y="-25" width="20" height="20" fill="#e5e7eb" />
+    <rect x="-15" y="0" width="30" height="30" fill="#4b5563" />
+  </g>
+  
+  <!-- 양파 밭 -->
+  <g transform="translate(400, 400)">
+    <!-- 밭 바탕 -->
+    <rect x="-350" y="0" width="700" height="60" fill="#4a5568" opacity="0.3" />
+    
+    <!-- 양파 심어진 열 -->
+    <g id="onion-row">
+      <g transform="translate(-320, 20)">
+        <circle cx="0" cy="0" r="8" fill="#8b5cf6" />
+        <path d="M-3,-8 L0,-15 L3,-8 Z" fill="#6d28d9" />
+      </g>
+      <g transform="translate(-290, 20)">
+        <circle cx="0" cy="0" r="8" fill="#8b5cf6" />
+        <path d="M-3,-8 L0,-15 L3,-8 Z" fill="#6d28d9" />
+      </g>
+      <g transform="translate(-260, 20)">
+        <circle cx="0" cy="0" r="8" fill="#8b5cf6" />
+        <path d="M-3,-8 L0,-15 L3,-8 Z" fill="#6d28d9" />
+      </g>
+      <g transform="translate(-230, 20)">
+        <circle cx="0" cy="0" r="8" fill="#8b5cf6" />
+        <path d="M-3,-8 L0,-15 L3,-8 Z" fill="#6d28d9" />
+      </g>
+      <g transform="translate(-200, 20)">
+        <circle cx="0" cy="0" r="8" fill="#8b5cf6" />
+        <path d="M-3,-8 L0,-15 L3,-8 Z" fill="#6d28d9" />
+      </g>
+      <g transform="translate(-170, 20)">
+        <circle cx="0" cy="0" r="8" fill="#8b5cf6" />
+        <path d="M-3,-8 L0,-15 L3,-8 Z" fill="#6d28d9" />
+      </g>
+      <g transform="translate(-140, 20)">
+        <circle cx="0" cy="0" r="8" fill="#8b5cf6" />
+        <path d="M-3,-8 L0,-15 L3,-8 Z" fill="#6d28d9" />
+      </g>
+      <g transform="translate(-110, 20)">
+        <circle cx="0" cy="0" r="8" fill="#8b5cf6" />
+        <path d="M-3,-8 L0,-15 L3,-8 Z" fill="#6d28d9" />
+      </g>
+      <g transform="translate(-80, 20)">
+        <circle cx="0" cy="0" r="8" fill="#8b5cf6" />
+        <path d="M-3,-8 L0,-15 L3,-8 Z" fill="#6d28d9" />
+      </g>
+      <g transform="translate(-50, 20)">
+        <circle cx="0" cy="0" r="8" fill="#8b5cf6" />
+        <path d="M-3,-8 L0,-15 L3,-8 Z" fill="#6d28d9" />
+      </g>
+      <g transform="translate(-20, 20)">
+        <circle cx="0" cy="0" r="8" fill="#8b5cf6" />
+        <path d="M-3,-8 L0,-15 L3,-8 Z" fill="#6d28d9" />
+      </g>
+      <g transform="translate(10, 20)">
+        <circle cx="0" cy="0" r="8" fill="#8b5cf6" />
+        <path d="M-3,-8 L0,-15 L3,-8 Z" fill="#6d28d9" />
+      </g>
+      <g transform="translate(40, 20)">
+        <circle cx="0" cy="0" r="8" fill="#8b5cf6" />
+        <path d="M-3,-8 L0,-15 L3,-8 Z" fill="#6d28d9" />
+      </g>
+      <g transform="translate(70, 20)">
+        <circle cx="0" cy="0" r="8" fill="#8b5cf6" />
+        <path d="M-3,-8 L0,-15 L3,-8 Z" fill="#6d28d9" />
+      </g>
+      <g transform="translate(100, 20)">
+        <circle cx="0" cy="0" r="8" fill="#8b5cf6" />
+        <path d="M-3,-8 L0,-15 L3,-8 Z" fill="#6d28d9" />
+      </g>
+      <g transform="translate(130, 20)">
+        <circle cx="0" cy="0" r="8" fill="#8b5cf6" />
+        <path d="M-3,-8 L0,-15 L3,-8 Z" fill="#6d28d9" />
+      </g>
+      <g transform="translate(160, 20)">
+        <circle cx="0" cy="0" r="8" fill="#8b5cf6" />
+        <path d="M-3,-8 L0,-15 L3,-8 Z" fill="#6d28d9" />
+      </g>
+      <g transform="translate(190, 20)">
+        <circle cx="0" cy="0" r="8" fill="#8b5cf6" />
+        <path d="M-3,-8 L0,-15 L3,-8 Z" fill="#6d28d9" />
+      </g>
+      <g transform="translate(220, 20)">
+        <circle cx="0" cy="0" r="8" fill="#8b5cf6" />
+        <path d="M-3,-8 L0,-15 L3,-8 Z" fill="#6d28d9" />
+      </g>
+      <g transform="translate(250, 20)">
+        <circle cx="0" cy="0" r="8" fill="#8b5cf6" />
+        <path d="M-3,-8 L0,-15 L3,-8 Z" fill="#6d28d9" />
+      </g>
+      <g transform="translate(280, 20)">
+        <circle cx="0" cy="0" r="8" fill="#8b5cf6" />
+        <path d="M-3,-8 L0,-15 L3,-8 Z" fill="#6d28d9" />
+      </g>
+      <g transform="translate(310, 20)">
+        <circle cx="0" cy="0" r="8" fill="#8b5cf6" />
+        <path d="M-3,-8 L0,-15 L3,-8 Z" fill="#6d28d9" />
+      </g>
+    </g>
+    
+    <!-- 두번째 열 -->
+    <g transform="translate(0, 20)">
+      <use href="#onion-row" />
+    </g>
+  </g>
+  
+  <!-- 도로와 길 -->
+  <path d="M150,350 Q270,340 400,350 Q520,360 650,350 L650,450 L150,450 Z" fill="#718096" opacity="0.7" />
+  <rect x="395" y="350" width="10" height="100" fill="#f7fafc" opacity="0.9" />
+  
+  <!-- 사람들 (매우 추상화) -->
+  <!-- 인원 1 -->
+  <g transform="translate(340, 380) scale(0.8)">
+    <circle cx="0" cy="-10" r="5" fill="#fc8181" />
+    <rect x="-3" y="-5" width="6" height="15" fill="#fc8181" />
+    <line x1="-3" y1="0" x2="-7" y2="10" stroke="#fc8181" stroke-width="2" />
+    <line x1="3" y1="0" x2="7" y2="10" stroke="#fc8181" stroke-width="2" />
+  </g>
+  <!-- 인원 2 -->
+  <g transform="translate(370, 375) scale(0.7)">
+    <circle cx="0" cy="-10" r="5" fill="#4299e1" />
+    <rect x="-3" y="-5" width="6" height="15" fill="#4299e1" />
+    <line x1="-3" y1="0" x2="-7" y2="10" stroke="#4299e1" stroke-width="2" />
+    <line x1="3" y1="0" x2="7" y2="10" stroke="#4299e1" stroke-width="2" />
+  </g>
+  <!-- 인원 3 -->
+  <g transform="translate(450, 385) scale(0.75)">
+    <circle cx="0" cy="-10" r="5" fill="#68d391" />
+    <rect x="-3" y="-5" width="6" height="15" fill="#68d391" />
+    <line x1="-3" y1="0" x2="-7" y2="10" stroke="#68d391" stroke-width="2" />
+    <line x1="3" y1="0" x2="7" y2="10" stroke="#68d391" stroke-width="2" />
+  </g>
+  
+  <!-- 나무들 -->
+  <g transform="translate(180, 320) scale(0.9)">
+    <path d="M0,-40 L8,-20 L5,-20 L12,-5 L8,-5 L15,10 L-15,10 L-8,-5 L-12,-5 L-5,-20 L-8,-20 Z" fill="#38a169" />
+    <rect x="-3" y="10" width="6" height="12" fill="#8b5cf6" />
+  </g>
+  <g transform="translate(630, 310) scale(0.8)">
+    <path d="M0,-40 L8,-20 L5,-20 L12,-5 L8,-5 L15,10 L-15,10 L-8,-5 L-12,-5 L-5,-20 L-8,-20 Z" fill="#38a169" />
+    <rect x="-3" y="10" width="6" height="12" fill="#8b5cf6" />
+  </g>
+  <g transform="translate(150, 335) scale(0.6)">
+    <path d="M0,-40 L8,-20 L5,-20 L12,-5 L8,-5 L15,10 L-15,10 L-8,-5 L-12,-5 L-5,-20 L-8,-20 Z" fill="#38a169" />
+    <rect x="-3" y="10" width="6" height="12" fill="#8b5cf6" />
+  </g>
+  <g transform="translate(670, 325) scale(0.7)">
+    <path d="M0,-40 L8,-20 L5,-20 L12,-5 L8,-5 L15,10 L-15,10 L-8,-5 L-12,-5 L-5,-20 L-8,-20 Z" fill="#38a169" />
+    <rect x="-3" y="10" width="6" height="12" fill="#8b5cf6" />
+  </g>
+  
+  <!-- 태양 -->
+  <circle cx="650" cy="100" r="40" fill="#f6ad55" opacity="0.8" />
+  <circle cx="650" cy="100" r="30" fill="#f6e05e" opacity="0.8" />
+  
+  <!-- 구름 -->
+  <g opacity="0.7">
+    <ellipse cx="200" cy="110" rx="50" ry="20" fill="white" />
+    <ellipse cx="180" cy="100" rx="30" ry="15" fill="white" />
+    <ellipse cx="230" cy="100" rx="35" ry="18" fill="white" />
+  </g>
+  <g opacity="0.6">
+    <ellipse cx="500" cy="80" rx="60" ry="25" fill="white" />
+    <ellipse cx="480" cy="70" rx="40" ry="20" fill="white" />
+    <ellipse cx="530" cy="65" rx="45" ry="22" fill="white" />
+  </g>
+  
+  <!-- 양파밸리 텍스트 -->
+  <text x="400" y="60" font-family="Arial, sans-serif" font-size="36" font-weight="bold" text-anchor="middle" fill="white">창녕 양파밸리</text>
+  <text x="400" y="100" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" fill="#e9d5ff">Changnyeong Onion Valley</text>
+</svg>
