@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="200" xmlns="http://www.w3.org/2000/svg">
+  <!-- 배경 -->
+  <rect width="400" height="200" fill="#E9D5FF" />
+  
+  <!-- 그래프 아이콘 -->
+  <g transform="translate(200, 100) scale(2.5)">
+    <!-- 차트 배경 -->
+    <rect x="-40" y="-25" width="80" height="50" rx="5" fill="white" stroke="#7e3af2" stroke-width="2" />
+    
+    <!-- 내림차순 그래프 라인 -->
+    <polyline 
+      points="-30,5 -15,-5 0,15 15,-15 30,0" 
+      fill="none" 
+      stroke="#7e3af2" 
+      stroke-width="3" 
+      stroke-linecap="round" 
+      stroke-linejoin="round" />
+    
+    <!-- 그래프 포인트 -->
+    <circle cx="-30" cy="5" r="3" fill="#7e3af2" />
+    <circle cx="-15" cy="-5" r="3" fill="#7e3af2" />
+    <circle cx="0" cy="15" r="3" fill="#7e3af2" />
+    <circle cx="15" cy="-15" r="3" fill="#7e3af2" />
+    <circle cx="30" cy="0" r="3" fill="#7e3af2" />
+  </g>
+  
+  <!-- 타이틀 -->
+  <rect x="0" y="150" width="400" height="50" fill="#7e3af2" opacity="0.85" />
+  <text x="200" y="180" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="white">현황 및 문제점</text>
+</svg>
